@@ -36,6 +36,7 @@ namespace Calculator_Unit_Test
             Assert.That(uut.Power(4, 2), Is.EqualTo(16));
         }
 
+        [Test]
         public void Mul_Mul3and3_returns9()
         {
             var uut = new Calculator.Calculator();
@@ -43,11 +44,11 @@ namespace Calculator_Unit_Test
             
         }
 
-        public void Mul_Mul5and5_returns25()
+        [Test]
+        public void Div_Div5And0_ReturnsE()
         {
             var uut = new Calculator.Calculator();
-            Assert.That(uut.Multiply(5, 5), Is.EqualTo(25));
-
+            Assert.Throws(typeof(DivideByZeroException), () => uut.Divide(0, 4));
         }
     }
 }
