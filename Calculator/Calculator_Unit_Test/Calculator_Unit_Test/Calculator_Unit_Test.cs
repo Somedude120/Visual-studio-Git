@@ -43,5 +43,11 @@ namespace Calculator_Unit_Test
             
         }
 
+        public void Mul_Mul5and5_returns25()
+        {
+            var uut = new Calculator.Calculator();
+            Assert.That(uut.Multiply(5, 5), Is.EqualTo(25));
+
+        }
     }
 }
