@@ -48,7 +48,14 @@ namespace Calculator_Unit_Test
         public void Div_Div5And0_ReturnsE()
         {
             var uut = new Calculator.Calculator();
-            Assert.Throws(typeof(DivideByZeroException), () => uut.Divide(0, 4));
+            Assert.Throws(typeof(DivideByZeroException), () => uut.Divide(4, 0));
+        }
+
+        [Test]
+        public void Div_Div6And3_Returns2()
+        {
+            var uut = new Calculator.Calculator();
+            Assert.That(uut.Divide(6, 3), Is.EqualTo(2));
         }
     }
 }
