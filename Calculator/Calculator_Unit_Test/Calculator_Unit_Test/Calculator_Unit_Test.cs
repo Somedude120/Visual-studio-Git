@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Calculator_Unit_Test
 {
     [TestFixture]
-    public class Calculator_Unit_Test
+    public class Calculator
     {
         [Test]
         public void Add_Add3and4_returns7()
@@ -36,6 +36,14 @@ namespace Calculator_Unit_Test
             Assert.That(uut.Power(4, 2), Is.EqualTo(16));
         }
 
+        [Test]
+        public void Pow_Pow2andminus1_returnsE()
+        {
+            var uut = new Calculator.Calculator();
+            Assert.Throws(typeof(ArithmeticException), () => uut.Power(-3,2));
+        }
+
+        [Test]
         public void Mul_Mul3and3_returns9()
         {
             var uut = new Calculator.Calculator();

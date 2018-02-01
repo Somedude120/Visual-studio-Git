@@ -20,6 +20,13 @@ namespace Calculator
         }
         public double Power(double a, double b)
         {
+            
+            if(a < 0)
+                throw new System.ArithmeticException();
+
+            if(b < 0)
+                throw new System.ArithmeticException();
+
             return Math.Pow(a, b);
         }
 
@@ -34,7 +41,7 @@ namespace Calculator
         {
             Console.WriteLine("Welcome to ze Calculator, yes yes: ");
 
-            double a =10, b=0;
+            double a =10, b=0, c = 10, d = -2;
             var result = new Calculator();
 
             try
@@ -45,6 +52,16 @@ namespace Calculator
             catch (DivideByZeroException)
             {
                 Console.WriteLine("Attempted to divide by zero.");
+            }
+            //Ved at jeg kan sætte det i jeres system, afprøver bare min egen exception skabelon.
+            try
+            {
+                var sum = result.Power(c, d);
+                Console.WriteLine($"Power of {c} in {d} = {sum}");
+            }
+            catch (ArithmeticException)
+            {
+                Console.WriteLine("Attempted to do Pow function with negative number.");
             }
 
             Console.ReadKey();
