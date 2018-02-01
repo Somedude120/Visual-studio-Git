@@ -30,10 +30,17 @@ namespace Calculator_Unit_Test
             Assert.That(uut.Multiply(2, 2), Is.EqualTo(4));
         }
         [Test]
-        public void Pow_Pow4and2_returns8()
+        public void Pow_Pow4and2_returns16()
         {
             var uut = new Calculator.Calculator();
             Assert.That(uut.Power(4, 2), Is.EqualTo(16));
+        }
+
+        [Test]
+        public void Pow_Pow4andmin2_returns16()
+        {
+            var uut = new Calculator.Calculator();
+            Assert.That(uut.Power(4,-2),Is.EqualTo(16));
         }
 
         public void Mul_Mul3and3_returns9()
