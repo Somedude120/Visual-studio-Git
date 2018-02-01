@@ -36,5 +36,12 @@ namespace Calculator_Unit_Test
             Assert.That(uut.Power(4, 2), Is.EqualTo(16));
         }
 
+        public void Mul_Mul3and3_returns9()
+        {
+            var uut = new Calculator.Calculator();
+            Assert.That(uut.Multiply(3, 3),Is.EqualTo(9));
+            
+        }
+
     }
 }
