@@ -46,24 +46,15 @@ namespace Calculator_Framework
         {
             Console.WriteLine("Welcome to ze Calculator, yes yes: ");
 
-            double a = 10, b = 0, c = 10, d = -2;
+            double a = 5, b = 1, c = 10, d = 0;
             
             var result = new Calculator();
-
-            string number = Console.ReadLine(); //ReadLine er strings... den skal laves om til double
-            double newNumber = Convert.ToDouble(number); //Lav numret om til en double
-            double f = result.Accumulator = newNumber; //Accumulator modtager et nyt nummer
-
-            Console.WriteLine($"{f}"); //Et output af accumulatoreren
-            
-            var summing = result.Add(f, f); //Laver en sum med den accumulatoreren virker
-            
-            Console.WriteLine($"{f} + {f} = {summing}"); //Se det virker!
-
+            double sum = 0;
             try
             {
-                var sum = result.Divide(a, b);
-                Console.WriteLine("{0} divided by {1} = {2}", a, b, result);
+                sum = result.Divide(a, b);
+                Console.WriteLine("{0} divided by {1} = {2}", a, b, result.Divide(a,b));
+                result.Accumulator = sum; //Giver summen til accumulatoren. Kinda useless
             }
             catch (DivideByZeroException)
             {
@@ -72,13 +63,17 @@ namespace Calculator_Framework
             //Ved at jeg kan sætte det i jeres system, afprøver bare min egen exception skabelon.
             try
             {
-                var sum = result.Power(c, d);
+                sum = result.Power(c, d);
+                result.Accumulator = sum; //Igen giver summen, så den virker
                 Console.WriteLine($"Power of {c} in {d} = {sum}");
+                
             }
             catch (ArithmeticException)
             {
                 Console.WriteLine("Attempted to do Pow function with negative number.");
             }
+
+            Console.WriteLine($"Accumulation last sum: {result.Accumulator}"); //Den giver den sidste sum
 
             Console.ReadKey();
         }
