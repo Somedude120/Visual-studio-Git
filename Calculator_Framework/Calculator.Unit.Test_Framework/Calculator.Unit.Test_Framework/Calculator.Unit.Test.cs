@@ -79,6 +79,7 @@ namespace Calculator.Unit.Test
         {
             var uut = new Calculator_Framework.Calculator();
             uut.Accumulator = uut.Add(1, 1);
+
             Assert.That(uut.Clear(), Is.EqualTo(0));
         }
     }
