@@ -78,9 +78,9 @@ namespace Calculator.Unit.Test
         public void Clear_ClearAcc_Returns0()
         {
             var uut = new Calculator_Framework.Calculator();
-            uut.Accumulator = uut.Add(1, 1);
-
-            Assert.That(uut.Clear(), Is.EqualTo(0));
+            uut.Accumulator = 20;
+            uut.Clear();
+            Assert.That(uut.Accumulator, Is.EqualTo(0));
         }
     }
     }

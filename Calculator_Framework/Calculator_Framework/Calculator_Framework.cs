@@ -39,6 +39,13 @@ namespace Calculator_Framework
             return dividend / divisor;
         }
 
+        public double Divide(double divisor)
+        {
+            if (divisor == 0)
+                throw new System.DivideByZeroException();
+            return this.Accumulator / divisor;
+            this.Accumulator = this.Accumulator / divisor;
+        }
         //Så vi skal lave lidt get set syntaks, det er en anden metode at lave get og set funktionen
         public double Accumulator //Lav property 
         { get; set; } //Bliver set som get{return Accumulator;} og set {Accumulator = værdi;}
