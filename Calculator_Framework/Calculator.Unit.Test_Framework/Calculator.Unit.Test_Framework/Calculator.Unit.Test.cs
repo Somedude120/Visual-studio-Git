@@ -73,5 +73,13 @@ namespace Calculator.Unit.Test
             uut.Accumulator = uut.Add(1, 1);
             Assert.That(uut.Add(uut.Accumulator,2), Is.EqualTo(4));
         }
+
+        [Test]
+        public void Clear_ClearAcc_Returns0()
+        {
+            var uut = new Calculator_Framework.Calculator();
+            uut.Accumulator = uut.Add(1, 1);
+            Assert.That(uut.Clear(), Is.EqualTo(0));
+        }
     }
     }

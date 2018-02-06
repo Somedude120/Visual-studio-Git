@@ -45,7 +45,7 @@ namespace Calculator_Framework
 
         public void Clear()
         {
-
+            this.Accumulator = 0;
         }
         static void Main(string[] args)
         {
