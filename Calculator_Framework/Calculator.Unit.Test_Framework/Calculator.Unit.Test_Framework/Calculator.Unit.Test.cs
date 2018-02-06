@@ -65,5 +65,13 @@ namespace Calculator.Unit.Test
             var uut = new Calculator_Framework.Calculator();
             Assert.That(uut.Divide(6, 3), Is.EqualTo(2));
         }
+
+        [Test]
+        public void Acc_AccAdd2And2_Returns4()
+        {
+            var uut = new Calculator_Framework.Calculator();
+            uut.Accumulator = uut.Add(1, 1);
+            Assert.That(uut.Add(uut.Accumulator,2), Is.EqualTo(4));
+        }
     }
-}
+    }

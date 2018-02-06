@@ -8,6 +8,7 @@ namespace Calculator_Framework
         public double Add(double a, double b)
         {
             return a + b;
+            
         }
 
         public double Substraction(double a, double b)
@@ -40,8 +41,12 @@ namespace Calculator_Framework
 
         //Så vi skal lave lidt get set syntaks, det er en anden metode at lave get og set funktionen
         public double Accumulator //Lav property 
-        { get; private set; } //Bliver set som get{return Accumulator;} og set {Accumulator = værdi;}
-        
+        { get; set; } //Bliver set som get{return Accumulator;} og set {Accumulator = værdi;}
+
+        public void Clear()
+        {
+
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to ze Calculator, yes yes: ");
