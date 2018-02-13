@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator_Framework", "Calculator_Framework\Calculator_Framework.csproj", "{E2E1C509-D506-41CE-B997-8F398C9368FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Unit.Test_Framework", "Calculator.Unit.Test_Framework\Calculator.Unit.Test_Framework\Calculator.Unit.Test_Framework.csproj", "{E2E23910-DAAC-46C1-9F72-0B0F55A9FEFC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7715A7C4-52E0-4562-B18F-3C1021F6C990}"
+	ProjectSection(SolutionItems) = preProject
+		..\dotCoverCoverageConfig.xml = ..\dotCoverCoverageConfig.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
