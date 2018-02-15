@@ -10,7 +10,6 @@ namespace Calculator.Unit.Test
     [TestFixture]
     public class Calculator
     {
-        //hej
         [Test]
         public void Add_Add3and4_returns7()
         {
