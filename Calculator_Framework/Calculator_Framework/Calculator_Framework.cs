@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace Calculator_Framework
 {
@@ -11,7 +10,7 @@ namespace Calculator_Framework
             
         }
 
-        public double Substraction(double a, double b)
+        public double Subtraction(double a, double b)
         {
             return a - b;
         }
@@ -24,10 +23,10 @@ namespace Calculator_Framework
         {
 
             if (a < 0)
-                throw new System.ArithmeticException();
+                throw new ArithmeticException();
 
             if (b < 0)
-                throw new System.ArithmeticException();
+                throw new ArithmeticException();
 
             return Math.Pow(a, b);
         }
@@ -35,16 +34,15 @@ namespace Calculator_Framework
         public double Divide(double dividend, double divisor)
         {
             if (divisor == 0)
-                throw new System.DivideByZeroException();
+                throw new DivideByZeroException();
             return dividend / divisor;
         }
 
         public double Divide(double divisor)
         {
             if (divisor == 0)
-                throw new System.DivideByZeroException();
-            return this.Accumulator / divisor;
-            this.Accumulator = this.Accumulator / divisor;
+                throw new DivideByZeroException();
+            return Accumulator / divisor;
         }
         //Så vi skal lave lidt get set syntaks, det er en anden metode at lave get og set funktionen
         public double Accumulator //Lav property 
@@ -52,16 +50,16 @@ namespace Calculator_Framework
 
         public void Clear()
         {
-            this.Accumulator = 0;
+            Accumulator = 0;
         }
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Welcome to ze Calculator, yes yes: ");
+            Console.WriteLine("Welcome to the Calculator, yes yes: ");
 
             double a = 5, b = 1, c = 10, d = 0;
             
             var result = new Calculator();
-            double sum = 0;
+            double sum;
             try
             {
                 sum = result.Divide(a, b);

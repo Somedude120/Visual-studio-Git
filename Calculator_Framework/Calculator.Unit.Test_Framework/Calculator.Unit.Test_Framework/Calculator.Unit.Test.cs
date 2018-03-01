@@ -21,7 +21,7 @@ namespace Calculator.Unit.Test
         public void Sub_Sub4and3_returns1()
         {
             var uut = new Calculator_Framework.Calculator();
-            Assert.That(uut.Substraction(4, 3), Is.EqualTo(1));
+            Assert.That(uut.Subtraction(4, 3), Is.EqualTo(1));
         }
         [Test]
         public void Mul_Mul2and2_returns4()
