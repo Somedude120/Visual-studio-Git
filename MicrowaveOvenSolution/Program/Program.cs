@@ -24,8 +24,7 @@ namespace Program
 
 
             powerTube.TurnOn(10);
-            timer.Start(timer.TimeRemaining);
-            display.ShowTime(10,0);
+            display.ShowTime(0,10);
             door.Open();
             door.Close();
             
@@ -42,8 +41,11 @@ namespace Program
 
             btnTime.Press();
             btnStart.Press();
-            btnCancel.Press();
 
+            //btnCancel.Press();
+            //timer.Stop();
+
+            Console.ReadLine();
         }
     }
 }
