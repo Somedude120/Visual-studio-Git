@@ -22,7 +22,9 @@ namespace Program
             Door door = new Door();
             Light light = new Light(output);
 
+            //Creating cookcontroller without the ui 
             CookController CC = new CookController(timer, display, powerTube);
+            //Creating userinterface using property injection
             UserInterface ui = new UserInterface(btnStart, btnTime, btnCancel, door, display, light, CC);
             CC.UI = ui;
 

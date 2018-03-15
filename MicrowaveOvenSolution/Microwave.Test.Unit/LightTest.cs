@@ -48,8 +48,6 @@ namespace Microwave.Test.Unit
             uut.TurnOff();
             output.DidNotReceive().OutputLine(Arg.Is<string>(str => str.Contains("off")));
         }
-
-
-
+        
     }
 }
