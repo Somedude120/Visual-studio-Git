@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2B04DA6B-AFE9-4548-AA05-84D806BA0FA4}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MicrowaveOvenClasses</RootNamespace>
-    <AssemblyName>MicrowaveOvenClasses</AssemblyName>
+    <ProjectGuid>{A5C8BFEC-8BDF-4F8E-AC4A-DC1C4F411391}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Program</RootNamespace>
+    <AssemblyName>Program</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,26 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Boundary\Button.cs" />
-    <Compile Include="Boundary\Display.cs" />
-    <Compile Include="Boundary\Door.cs" />
-    <Compile Include="Boundary\Light.cs" />
-    <Compile Include="Boundary\Output.cs" />
-    <Compile Include="Boundary\PowerTube.cs" />
-    <Compile Include="Boundary\Timer.cs" />
-    <Compile Include="Controllers\CookController.cs" />
-    <Compile Include="Controllers\UserInterface.cs" />
-    <Compile Include="Interfaces\IButton.cs" />
-    <Compile Include="Interfaces\ICookController.cs" />
-    <Compile Include="Interfaces\IDisplay.cs" />
-    <Compile Include="Interfaces\IDoor.cs" />
-    <Compile Include="Interfaces\ILight.cs" />
-    <Compile Include="Interfaces\IOutput.cs" />
-    <Compile Include="Interfaces\IPowerTube.cs" />
-    <Compile Include="Interfaces\ITimer.cs" />
-    <Compile Include="Interfaces\IUserInterface.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MicrowaveOvenClasses\MicrowaveOvenClasses.csproj">
+      <Project>{2b04da6b-afe9-4548-aa05-84d806ba0fa4}</Project>
+      <Name>MicrowaveOvenClasses</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
