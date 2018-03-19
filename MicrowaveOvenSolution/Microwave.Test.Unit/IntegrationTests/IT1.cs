@@ -1,16 +1,19 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using MicrowaveOvenClasses.Boundary;
-using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
-using NSubstitute;
 using NUnit.Framework;
+using NSubstitute;
+using MicrowaveOvenClasses.Controllers;
 using Assert = NUnit.Framework.Assert;
 
-namespace Microwave.Test.Intergration
+namespace Microwave.Test.Unit.Tests
 {
     [TestFixture]
-    public class UnitTest1
+    public class IntegrationTest1
     {
         private IOutput _outputDisplay;
         private IOutput _outputPower;
@@ -36,7 +39,7 @@ namespace Microwave.Test.Intergration
         {
             int i = 0;
 
-            _outputPower.When(x=> x.OutputLine(Arg.Any<string>()))
+            _outputPower.When(x => x.OutputLine(Arg.Any<string>()))
                 .Do(x => ++i);
 
             _cookController.StartCooking(50, 2000);

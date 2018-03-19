@@ -60,7 +60,7 @@
     <Compile Include="LightTest.cs" />
     <Compile Include="PowerTubeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\IT1_Display.cs" />
+    <Compile Include="IntegrationTests\IT1.cs" />
     <Compile Include="TimerTest.cs" />
     <Compile Include="UserInterfaceTest.cs" />
   </ItemGroup>
