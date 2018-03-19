@@ -30,12 +30,6 @@ namespace Microwave.Test.Unit
             uut.Press();
             Assert.That(notified, Is.EqualTo(true));
         }
-
-        [Test]
-        public void PressPowerbtn()
-        {
-
-        }
-
+        
     }
 }
