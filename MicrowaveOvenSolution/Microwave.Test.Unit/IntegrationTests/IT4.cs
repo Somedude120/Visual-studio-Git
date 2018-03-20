@@ -18,17 +18,32 @@ namespace Microwave.Test.Intergration
         private IOutput _output;
 
 
-        private IButton _powerButton;
-        private IButton _timerButton;
-        private IButton _startButton;
-
+        private IButton _powerButton, _timerButton, _startButton;
+        
         private IDoor _door;
+
+        //Testing powertube
+        private IPowerTube _powerTube;
+        //Testing cookcontroller
+        private ICookController _cookController;
+        //Stuff for cookcontroller (Gonna be substituted)
+        private IUserInterface _ui;
+        private ITimer _timer;
+        private IDisplay _display;
 
         private IUserInterface _userInterface;
 
         [SetUp]
         public void Setup()
         {
+            _timer = Substitute.For<ITimer>();
+            _display = Substitute.For<IDisplay>();
+            _ui = Substitute.For<IUserInterface>();
+
+            _powerTube = new PowerTube(_output);
+
+            _cookController = new CookController(_timer, _display, _powerTube, _ui);
+
             _powerButton = new Button();
             _timerButton = new Button();
             _startButton = new Button();
@@ -122,6 +137,14 @@ namespace Microwave.Test.Intergration
                 Console.SetOut(originalOutput);
                 stringWriter.Dispose();
             }
+        }
+
+        //Step 4, powertube to cookcontroller
+        [Test]
+        public void powerTube_Cookcontrollertest()
+        {
+            _cookController.StartCooking(50,60);
+            _powerTube.Received().TurnOn(50);
         }
     }
 }

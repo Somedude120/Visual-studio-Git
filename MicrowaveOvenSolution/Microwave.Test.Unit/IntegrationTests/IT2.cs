@@ -199,5 +199,14 @@ namespace Microwave.Test.Unit.IntegrationTests
             //Assert
             _displayOutput.Received().OutputLine("Display shows: 01:00");
         }
+
+        //Step 2 test light and output
+        [Test]
+        public void Output_Light_setTest()
+        {
+            _light.TurnOn();
+            
+            _lightOutput.Received().OutputLine("Light is turned on");
+        }
     }
 }

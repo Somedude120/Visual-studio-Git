@@ -22,15 +22,15 @@ namespace Program
             Door door = new Door();
             Light light = new Light(output);
 
-
-            powerTube.TurnOn(10);
-            display.ShowTime(0,10);
             door.Open();
             door.Close();
-            
+            powerTube.TurnOn(30);
+            btnStart.Press();
+            display.ShowTime(0,10);
+            btnStart.Press();
             light.TurnOn();
-
-            
+           
+            btnTime.Press();
             
 
             //Creating cookcontroller without the ui 
@@ -41,9 +41,10 @@ namespace Program
 
             btnTime.Press();
             btnStart.Press();
-
+            
             //btnCancel.Press();
             //timer.Stop();
+            //CC.StartCooking(10,5);
 
             Console.ReadLine();
         }

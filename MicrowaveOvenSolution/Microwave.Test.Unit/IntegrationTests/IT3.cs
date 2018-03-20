@@ -148,5 +148,23 @@ namespace Microwave.Test.Intergration
             // Assert
             _fakePowerTubeOutput.Received().OutputLine(Arg.Any<string>());
         }
+
+        //Test between output and display
+        [Test]
+        public void Output_Displaytest()
+        {
+            //Testshowtime
+            _display.ShowTime(10,5);
+            _fakeDisplayOutput.OutputLine("10:05");
+
+            //Testclear
+            _display.Clear();
+            _fakeDisplayOutput.OutputLine("cleared");
+            
+            //Testshowpower
+            _display.ShowPower(100);
+            _fakeDisplayOutput.OutputLine("W 100");
+
+        }
     }
 }

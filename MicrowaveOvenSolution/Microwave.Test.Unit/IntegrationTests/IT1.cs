@@ -62,5 +62,15 @@ namespace Microwave.Test.Unit.Tests
             //Assert
             Assert.That(() => (timesCalled == 5), Is.True.After(5500));
         }
+
+        [Test]
+        public void Output_Powertube_setTest()
+        {
+            
+            //Step 1, test display changes when powertubes are turned on from cookcontrol
+            _powerTube.TurnOn(40);
+            
+            _outputPower.Received().OutputLine(Arg.Is<string>(str => str.Contains("PowerTube works with 40 %")));
+        }
     }
 }
