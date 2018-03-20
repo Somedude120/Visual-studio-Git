@@ -46,5 +46,21 @@ namespace Microwave.Test.Unit.Tests
 
             Assert.That(() => (i == 2), Is.True.After(2500));
         }
+
+
+        [Test]
+        public void CookController_StartCooking_OutputDisplayRecievedFiveTimes()
+        {
+            //Arrange
+            int timesCalled = 0;
+            //Act
+            _cookController.StartCooking(50, 5000);
+
+            _outputDisplay.When(x => x.OutputLine(Arg.Any<string>()))
+                .Do(x => ++timesCalled);
+
+            //Assert
+            Assert.That(() => (timesCalled == 5), Is.True.After(5500));
+        }
     }
 }
