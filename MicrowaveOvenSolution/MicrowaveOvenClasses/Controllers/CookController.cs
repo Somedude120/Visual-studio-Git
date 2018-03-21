@@ -7,7 +7,7 @@ namespace MicrowaveOvenClasses.Controllers
     {
         // Since there is a 2-way association, this cannot be set until the UI object has been created
         // It also demonstrates property dependency injection
-        public IUserInterface UI { set; private get; }
+        public IUserInterface UI { set; get; }
 
         private bool isCooking = false;
 

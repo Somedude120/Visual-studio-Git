@@ -75,12 +75,33 @@ namespace Microwave.Test.Unit.IntegrationTests
         [Test]
         public void UI_ShowTime_Display()
         {
+            
+            //Sætter timeknappen
+            _uut5.ShowTime(10,0);
             //Trykker på showtimeknappen
-            _uut1.OnTimePressed(_timeButton, new EventArgs());
+            //_uut1.OnTimePressed(_timeButton, new EventArgs());
 
-            _output.Received().OutputLine("Display shows: 00:00");
+            //Man kan også hænge det hele sammen og få det til at virke med UI construktoren
+            _uut3.UI.OnTimePressed(_timeButton, new EventArgs());
+
+            _output.Received().OutputLine("Display shows: 10:00");
         }
-        
+
+        [Test]
+        public void UI_StartCooking_CookController_StartTimer_Timer_TurnOn_PowerTube_Output()
+        {
+            //Trykker startcancelknappen
+            //_uut1.OnStartCancelPressed(_startCancelButton, new EventArgs());
+            _uut3.UI.OnStartCancelPressed(_startCancelButton, new EventArgs());
+            //Starter cookcontroller
+            _uut4.Start(10);
+            //Event på timeren viser hvor meget der står i displayet
+            _uut3.OnTimerTick(_timeButton, new EventArgs());
+            _output.Received().OutputLine("Display shows: 00:10");
+
+
+        }
+
         //[Test]
         //public void UserInterface_ReadyState_OpenDoor_LightWritesOnToLog()
         //{
