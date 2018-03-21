@@ -37,8 +37,14 @@ namespace MicrowaveOvenClasses.Controllers
             timer.TimerTick += new EventHandler(OnTimerTick);
         }
 
+        //Beregn procenten af power inden den bliver tændt, da det er i procenter
         public void StartCooking(int power, int time)
         {
+            //Dette skulle give 50 hvis der kommer 350 WATT ind
+            double tempPower = ((power / 700.0) * 100.0);
+            //Husk at skrive 350 for at få 50 procent
+
+            power = Convert.ToInt32(tempPower);
             myPowerTube.TurnOn(power);
             myTimer.Start(time);
             isCooking = true;

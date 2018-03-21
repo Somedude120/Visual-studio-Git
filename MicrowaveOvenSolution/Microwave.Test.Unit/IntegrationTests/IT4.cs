@@ -49,6 +49,7 @@ namespace Microwave.Test.Intergration
             _startButton = new Button();
 
             _output = new Output();
+            _output = Substitute.For<IOutput>();
 
             IDisplay display = new Display(_output);
             _userInterface = new UserInterface(_powerButton, _timerButton, _startButton, _door = new Door(), display, new Light(_output), new CookController(new Timer(), display, new PowerTube(_output)));
@@ -143,8 +144,23 @@ namespace Microwave.Test.Intergration
         [Test]
         public void powerTube_Cookcontrollertest()
         {
-            _cookController.StartCooking(50,60);
-            _powerTube.Received().TurnOn(50);
+            Timer timer = new Timer();
+            ;
+            Display display = new Display(_output);
+            PowerTube powerTube = new PowerTube(_output);
+            Button btnStart = new Button();
+            Button btnTime = new Button();
+            Button btnCancel = new Button();
+            Door door = new Door();
+            Light light = new Light(_output);
+            //Creating cookcontroller without the ui 
+            CookController CC = new CookController(timer, display, powerTube);
+            //Creating userinterface using property injection
+            UserInterface ui = new UserInterface(btnStart, btnTime, btnCancel, door, display, light, CC);
+            CC.UI = ui;
+
+            
+            _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 %")));
         }
     }
 }

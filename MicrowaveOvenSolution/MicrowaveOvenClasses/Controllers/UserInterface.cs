@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using MicrowaveOvenClasses.Interfaces;
 
+//Mangler clear et eller andet sted
 namespace MicrowaveOvenClasses.Controllers
 {
     public class UserInterface : IUserInterface
@@ -134,6 +135,7 @@ namespace MicrowaveOvenClasses.Controllers
             switch (myState)
             {
                 case States.DOOROPEN:
+                    //Lol mangler clear display
                     myLight.TurnOff();
                     myState = States.READY;
                     break;
