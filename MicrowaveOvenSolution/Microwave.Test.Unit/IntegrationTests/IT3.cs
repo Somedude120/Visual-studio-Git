@@ -93,27 +93,5 @@ namespace Microwave.Test.Intergration
             _powerTube.Received(1).TurnOn(7);
             _timer.Received(1).Start(3 * 60);
         }
-
-        [Test]
-        public void CC_CookingTimeTick_DisplayTime()
-        {
-            UI_CC_StartCookingTest_LightPowerTimerOn();
-            _timer.TimerTick += Raise.EventWith(this, EventArgs.Empty);
-            _display.Received(1).ShowTime((3 * 60) / 60, (3 * 60) % 60);
-        }
-
-        [Test]
-        public void UI_CC_CookingFinished_PowerTubeOffDisplayClearLightOff()
-        {
-            UI_CC_StartCookingTest_LightPowerTimerOn();
-            _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
-            _powerTube.Received(1).TurnOff();
-            _display.Received(2).Clear();
-            _light.Received(1).TurnOff();
-            _powerButton.Press();
-            _display.Received(2).ShowPower(50);
-            _timeButton.Press();
-            _display.Received(2).ShowTime(1, 0);
-        }
     }
 }
