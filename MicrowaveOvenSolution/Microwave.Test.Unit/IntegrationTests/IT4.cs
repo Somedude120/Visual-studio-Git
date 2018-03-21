@@ -1,166 +1,115 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.IO;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using MicrowaveOvenClasses.Boundary;
-//using MicrowaveOvenClasses.Controllers;
-//using MicrowaveOvenClasses.Interfaces;
-//using NSubstitute;
-//using NUnit.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MicrowaveOvenClasses.Boundary;
+using MicrowaveOvenClasses.Controllers;
+using MicrowaveOvenClasses.Interfaces;
+using NSubstitute;
+using NUnit.Framework;
 
-//namespace Microwave.Test.Intergration
-//{
-//    [TestFixture]
-//    class IT4
-//    {
-//        private IOutput _output;
+namespace Microwave.Test.Integration
+{
+    class IT4
+    {
+        private IOutput _output;
+        private IDoor _door;
+        private ICookController _cookController;
+        private ILight _light;
+        private IPowerTube _powerTube;
+        private IDisplay _display;
+        private ITimer _timer;
+        private IButton _powerButton;
+        private IButton _timeButton;
+        private IButton _startCancelButton;
+        private IUserInterface _userInterface;
 
+        [SetUp]
+        public void SetUp()
+        {
+            _door = new Door();
+            _powerButton = new Button();
+            _timeButton = new Button();
+            _startCancelButton = new Button();
+            _output = Substitute.For<IOutput>();
+            _powerTube = new PowerTube(_output);
+            _display = new Display(_output);
+            _light = new Light(_output);
+            _timer = new Timer();
+            _cookController = new CookController(_timer, _display, _powerTube);
+            _userInterface = new UserInterface(_powerButton, _timeButton, _startCancelButton, _door, _display, _light, _cookController);
+        }
 
-//        private IButton _powerButton, _timerButton, _startButton;
-        
-//        private IDoor _door;
+        [Test]
+        public void CookingActive_DoorOpened_OutputIs()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
+            _door.Open();
+            Received.InOrder(() =>
+            {
+                _output.Received().OutputLine("Display shows: 50 W");
+                _output.Received().OutputLine("Display shows: 01:00");
+                _output.Received().OutputLine("Display cleared");
+                _output.Received().OutputLine("PowerTube turned off");
+            });
+        }
 
-//        //Testing powertube
-//        private IPowerTube _powerTube;
-//        //Testing cookcontroller
-//        private ICookController _cookController;
-//        //Stuff for cookcontroller (Gonna be substituted)
-//        private IUserInterface _ui;
-//        private ITimer _timer;
-//        private IDisplay _display;
+        [Test]
+        public void OpenDoor_OutputIs()
+        {
+            _door.Open();
+            _output.Received().OutputLine("Light is turned on");
+        }
 
-//        private IUserInterface _userInterface;
+        [Test]
+        public void OpenCloseDoor_OutputIs()
+        {
+            _door.Open();
+            _door.Close();
 
-//        [SetUp]
-//        public void Setup()
-//        {
-//            _timer = Substitute.For<ITimer>();
-//            _display = Substitute.For<IDisplay>();
-//            _ui = Substitute.For<IUserInterface>();
+            Received.InOrder(() =>
+            {
+                _output.OutputLine("Light is turned on");
+                _output.OutputLine("Light is turned off");
+            });
 
-//            _powerTube = new PowerTube(_output);
+        }
 
-//            _cookController = new CookController(_timer, _display, _powerTube, _ui);
+        [Test]
+        public void StartCancelPressed_SetupDone_OutputIs()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
 
-//            _powerButton = new Button();
-//            _timerButton = new Button();
-//            _startButton = new Button();
+            Received.InOrder(() =>
+            {
+                _output.OutputLine("Display shows: 50 W");
+                _output.OutputLine("Display shows: 01:00");
+            });
+        }
 
-//            _output = new Output();
-//            _output = Substitute.For<IOutput>();
+        [Test]
+        public void StartCancelPressed_CookingActive_OutputIs()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
+            _startCancelButton.Press();
 
-//            IDisplay display = new Display(_output);
-//            _userInterface = new UserInterface(_powerButton, _timerButton, _startButton, _door = new Door(), display, new Light(_output), new CookController(new Timer(), display, new PowerTube(_output)));
-//        }
+            Received.InOrder(() =>
+            {
+                _output.OutputLine("Display shows: 50 W");
+                _output.OutputLine("Display shows: 01:00");
+                _output.OutputLine("Display cleared");
+                _output.OutputLine("PowerTube turned off");
+                _output.OutputLine("Light is turned off");
+                _output.OutputLine("Display cleared");
+            });
+        }
 
-//        [Test]
-//        public void output_openDoor_OutputCorrect()
-//        {
-//            //Arrange
-//            var consoleOutput = new ConsoleOutput();
-
-//            //Act
-//            _door.Open();
-
-//            //Assert
-//            Assert.IsTrue(consoleOutput.GetOuput().Contains("Light") && consoleOutput.GetOuput().Contains("turned on"));
-//        }
-//        [Test]
-//        public void output_closeDoor_OutputCorrect()
-//        {
-//            //Arrange
-//            var consoleOutput = new ConsoleOutput();
-
-//            //Act
-//            _door.Close();
-
-//            //Assert
-//            Assert.IsTrue(consoleOutput.GetOuput().Contains("Light") && consoleOutput.GetOuput().Contains("turned off"));
-//        }
-
-
-
-//        [TestCase(1)]
-//        [TestCase(5)]
-//        public void output_PowerbuttonPress_OutputCorrect(int timesToPress)
-//        {
-//            //Arrange
-//            var consoleOutput = new ConsoleOutput();
-
-//            //Act
-//            for (int i = 0; i < timesToPress; i++)
-//            {
-//                _powerButton.Press();
-//            }
-
-//            //Assert
-//            Assert.IsTrue(consoleOutput.GetOuput().Contains("Display") && consoleOutput.GetOuput().Contains($"{timesToPress * 50} W"));
-//        }
-
-//        [TestCase(1)]
-//        [TestCase(5)]
-//        public void output_timebuttonPress_OutputCorrect(int timesToPress) //virker ikke
-//        {
-//            //Arrange
-//            var consoleOutput = new ConsoleOutput();
-//            //Act
-//            for (int i = 0; i < timesToPress; i++)
-//            {
-//                _timerButton.Press();
-//            }
-//            //Assert
-//            Assert.IsTrue(consoleOutput.GetOuput().Contains("Display") && consoleOutput.GetOuput().Contains($"{timesToPress:D2}:00"));
-//        }
-
-
-//        public class ConsoleOutput : IDisposable
-//        {
-//            //From https://stackoverflow.com/questions/2139274/grabbing-the-output-sent-to-console-out-from-within-a-unit-test
-//            private StringWriter stringWriter;
-//            private TextWriter originalOutput;
-
-//            public ConsoleOutput()
-//            {
-//                stringWriter = new StringWriter();
-//                originalOutput = Console.Out;
-//                Console.SetOut(stringWriter);
-//            }
-
-//            public string GetOuput()
-//            {
-//                return stringWriter.ToString();
-//            }
-
-//            public void Dispose()
-//            {
-//                Console.SetOut(originalOutput);
-//                stringWriter.Dispose();
-//            }
-//        }
-
-//        //Step 4, powertube to cookcontroller
-//        [Test]
-//        public void powerTube_Cookcontrollertest()
-//        {
-//            Timer timer = new Timer();
-//            ;
-//            Display display = new Display(_output);
-//            PowerTube powerTube = new PowerTube(_output);
-//            Button btnStart = new Button();
-//            Button btnTime = new Button();
-//            Button btnCancel = new Button();
-//            Door door = new Door();
-//            Light light = new Light(_output);
-//            //Creating cookcontroller without the ui 
-//            CookController CC = new CookController(timer, display, powerTube);
-//            //Creating userinterface using property injection
-//            UserInterface ui = new UserInterface(btnStart, btnTime, btnCancel, door, display, light, CC);
-//            CC.UI = ui;
-
-            
-//            _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 %")));
-//        }
-//    }
-//}
+    }
+}
