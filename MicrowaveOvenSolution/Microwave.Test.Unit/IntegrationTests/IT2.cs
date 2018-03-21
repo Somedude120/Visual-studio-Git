@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,7 +89,7 @@ namespace Microwave.Test.Unit.IntegrationTests
         }
 
         [Test]
-        public void UI_StartCooking_CookController_StartTimer_Timer_TurnOn_PowerTube_Output()
+        public void UI_StartCooking_CookController_StartTimer_Timer_Output()
         {
             //Trykker startcancelknappen
             //_uut1.OnStartCancelPressed(_startCancelButton, new EventArgs());
@@ -102,134 +103,24 @@ namespace Microwave.Test.Unit.IntegrationTests
 
         }
 
-        //[Test]
-        //public void UserInterface_ReadyState_OpenDoor_LightWritesOnToLog()
-        //{
-        //    //Arrange
-        //    //State is already correct
+        [Test]
+        public void UI_Clear_Display()
+        {
+            //Tryk powerknappen
+            _uut1.OnPowerPressed(_powerButton, new EventArgs());
 
-        //    //Act
-        //    _uutUserInterface.OnDoorOpened(_door, new EventArgs());
+            //Tryk på start eller cancel knappen
+            _uut1.OnStartCancelPressed(_startCancelButton, new EventArgs());
+            
 
-        //    //Assert
-        //    _lightOutput.Received().OutputLine("Light is turned on");
-        //}
+            _output.Received().OutputLine("Display cleared");
 
-        //[Test]
-        //public void UserInterface_ReadyState_PressPowerButton_DisplayWritesPowerToLog()
-        //{
-        //    //Arrange
-        //    //State is already correct
+        }
 
-        //    //Act
-        //    _uutUserInterface.OnPowerPressed(_powerButton, new EventArgs());
-
-        //    //Assert
-        //    _displayOutput.Received().OutputLine("Display shows: 50 W");
-        //}
-      
-
-        
-        //[Test]
-        //public void UserInterface_DoorIsOpenState_CloseDoor_LightWritesOffToLog()
-        //{
-        //    //Arrange
-        //    _uutUserInterface.OnDoorOpened(_door, new EventArgs());
-
-        //    //Act
-        //    _uutUserInterface.OnDoorClosed(_door, new EventArgs());
-
-        //    //Assert
-        //    _lightOutput.Received().OutputLine("Light is turned off");
-        //}
-
-       
-
-        
-        //[Test]
-        //public void UserInterface_SetPowerState_PressPowerButton_DisplayWritesPowerToLog()
-        //{
-        //    //Arrange
-        //    //Get to state
-        //    _uutUserInterface.OnPowerPressed(_powerButton, new EventArgs());
-
-        //    //Act
-        //    _uutUserInterface.OnPowerPressed(_powerButton, new EventArgs());
-
-        //    //Assert
-        //    _displayOutput.Received().OutputLine("Display shows: 100 W");
-        //}
-
-        //[Test]
-        //public void UserInterface_SetPowerState_PressPowerButtonTwice_DisplayWritesPowerToLog()
-        //{
-        //    //Arrange
-        //    //Get to state
-        //    _uutUserInterface.OnPowerPressed(_powerButton, new EventArgs());
-
-        //    //Act
-        //    _uutUserInterface.OnPowerPressed(_powerButton, new EventArgs());
-        //    _uutUserInterface.OnPowerPressed(_powerButton, new EventArgs());
-
-        //    //Assert
-        //    _displayOutput.Received().OutputLine("Display shows: 150 W");
-        //}
-
-        //[Test]
-        //public void UserInterface_SetPowerState_PressStartCancelButton_DisplayWritesClearedToLog()
-        //{
-        //    //Arrange
-        //    //Get to state
-        //    _uutUserInterface.OnPowerPressed(_powerButton, new EventArgs());
-
-        //    //Act
-        //    _uutUserInterface.OnStartCancelPressed(_startCancelButton, new EventArgs());
-
-        //    //Assert
-        //    _displayOutput.Received().OutputLine("Display cleared");
-        //}
-
-        //[Test]
-        //public void UserInterface_SetPowerState_OpenDoor_DisplayWritesClearedToLog()
-        //{
-        //    //Arrange
-        //    //Get to state
-        //    _uutUserInterface.OnPowerPressed(_powerButton, new EventArgs());
-
-        //    //Act
-        //    _uutUserInterface.OnDoorOpened(_door, new EventArgs());
-
-        //    //Assert
-        //    _displayOutput.Received().OutputLine("Display cleared");
-        //}
-
-        //[Test]
-        //public void UserInterface_SetPowerState_OpenDoor_LightWritesOnToLog()
-        //{
-        //    //Arrange
-        //    //Get to state
-        //    _uutUserInterface.OnPowerPressed(_powerButton, new EventArgs());
-
-        //    //Act
-        //    _uutUserInterface.OnDoorOpened(_door, new EventArgs());
-
-        //    //Assert
-        //    _lightOutput.Received().OutputLine("Light is turned on");
-        //}
-
-        //[Test]
-        //public void UserInterface_SetPowerState_PressTimeButton_DisplayWritesTimeToLog()
-        //{
-        //    //Arrange
-        //    //Get to state
-        //    _uutUserInterface.OnPowerPressed(_powerButton, new EventArgs());
-
-        //    //Act
-        //    _uutUserInterface.OnTimePressed(_timeButton, new EventArgs());
-
-        //    //Assert
-        //    _displayOutput.Received().OutputLine("Display shows: 01:00");
-        //}
-
+        [Test]
+        public void UI_CookController_PowerTube_Output()
+        {
+            
+        }
     }
 }

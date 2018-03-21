@@ -135,7 +135,7 @@ namespace MicrowaveOvenClasses.Controllers
             switch (myState)
             {
                 case States.DOOROPEN:
-                    //Lol mangler clear display
+                   
                     myLight.TurnOff();
                     myState = States.READY;
                     break;
