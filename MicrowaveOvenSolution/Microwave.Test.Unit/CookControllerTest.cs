@@ -40,7 +40,7 @@ namespace Microwave.Test.Unit
         {
             uut.StartCooking(50, 60);
 
-            powerTube.Received().TurnOn(50);
+            powerTube.Received().TurnOn(7);
         }
 
         [Test]
