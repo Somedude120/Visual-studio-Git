@@ -115,12 +115,15 @@ namespace Microwave.Test.Unit.IntegrationTests
 
             _output.Received().OutputLine("Display cleared");
 
+
+
         }
 
         [Test]
         public void UI_CookController_PowerTube_Output()
         {
-            
+
+
         }
     }
 }
