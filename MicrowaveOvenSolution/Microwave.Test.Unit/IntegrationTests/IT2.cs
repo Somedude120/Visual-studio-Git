@@ -122,7 +122,11 @@ namespace Microwave.Test.Unit.IntegrationTests
         [Test]
         public void UI_CookController_PowerTube_Output()
         {
+            _uut2.TurnOn(50);
+            _uut2.TurnOff();
 
+            _output.Received().OutputLine("PowerTube works with 50 %");
+            _output.Received().OutputLine("PowerTube turned off");
 
         }
     }
