@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirTrafficLibrary", "AirTrafficLibrary\AirTrafficLibrary.csproj", "{C58F05CE-947F-4CBF-9E79-769788661477}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirTrafficLibrary.Test.Unit", "AirTrafficLibrary.Test.Unit\AirTrafficLibrary.Test.Unit.csproj", "{10D7AC26-30EA-4856-832A-77B0E1C89CCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C58F05CE-947F-4CBF-9E79-769788661477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C58F05CE-947F-4CBF-9E79-769788661477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C58F05CE-947F-4CBF-9E79-769788661477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C58F05CE-947F-4CBF-9E79-769788661477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10D7AC26-30EA-4856-832A-77B0E1C89CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D7AC26-30EA-4856-832A-77B0E1C89CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D7AC26-30EA-4856-832A-77B0E1C89CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D7AC26-30EA-4856-832A-77B0E1C89CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2DBFB2F4-4D15-4D10-831F-8EC1EA1E8DE4}
+	EndGlobalSection
+EndGlobal
