@@ -46,7 +46,7 @@ namespace MicrowaveOvenClasses.Controllers
             //Husk at skrive 350 for at få 50 procent
             myPowerTube.TurnOn(power / 7);
             //Timer skal være i sekunder
-            myTimer.Start(time*1000);
+            myTimer.Start(time);
             isCooking = true;
         }
 
