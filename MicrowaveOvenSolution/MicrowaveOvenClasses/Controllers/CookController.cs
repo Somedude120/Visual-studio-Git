@@ -41,14 +41,12 @@ namespace MicrowaveOvenClasses.Controllers
         public void StartCooking(int power, int time)
         {
 
-            int pow;
+            
             //Dette skulle give 50 hvis der kommer 350 WATT ind
-            double tempPower = ((power / 700.0) * 100.0);
             //Husk at skrive 350 for at få 50 procent
-            pow = Convert.ToInt32(tempPower);
-
-            myPowerTube.TurnOn(pow);
-            myTimer.Start(time);
+            myPowerTube.TurnOn(power / 7);
+            //Timer skal være i sekunder
+            myTimer.Start(time*1000);
             isCooking = true;
         }
 

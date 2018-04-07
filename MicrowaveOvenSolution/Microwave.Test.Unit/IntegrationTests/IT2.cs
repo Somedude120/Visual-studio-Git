@@ -88,7 +88,7 @@ namespace Microwave.Test.Unit.IntegrationTests
             _output.Received().OutputLine("Display shows: 10:00");
         }
 
-        [Test]
+        [Test] //Test fra UI til controller til timer
         public void UI_StartCooking_CookController_StartTimer_Timer_Output()
         {
             //Trykker startcancelknappen
@@ -120,14 +120,21 @@ namespace Microwave.Test.Unit.IntegrationTests
         }
 
         [Test]
-        public void UI_CookController_PowerTube_Output()
+        public void UI_CookController_Powertube_On()
         {
-            _uut2.TurnOn(50);
-            _uut2.TurnOff();
+            // Fra UI Igennem CC og rammer powertube
 
-            _output.Received().OutputLine("PowerTube works with 50 %");
-            _output.Received().OutputLine("PowerTube turned off");
+            //Tryk powerknappen
+            _uut1.OnPowerPressed(_powerButton, new EventArgs());
+            //Tryk timer knappen
+            _uut1.OnTimePressed(_timeButton, new EventArgs());
 
+            //Tryk start eller cancel knappen
+            _uut1.OnStartCancelPressed(_startCancelButton, new EventArgs());
+
+            //Modtag fra powertuben 50 watts
+            _output.Received().OutputLine(Arg.Is<string>(str => str.Contains((50).ToString())));
         }
+        
     }
 }
