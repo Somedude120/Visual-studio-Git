@@ -91,7 +91,7 @@ namespace Microwave.Test.Intergration
             _startCancelButton.Press();
             _light.Received(1).TurnOn();
             _powerTube.Received(1).TurnOn(7);
-            _timer.Received(1).Start(3 * 60000);
+            _timer.Received(1).Start(3 * 60);
         }
     }
 }

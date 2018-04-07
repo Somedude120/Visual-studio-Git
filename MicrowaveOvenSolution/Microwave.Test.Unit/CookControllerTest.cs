@@ -32,7 +32,7 @@ namespace Microwave.Test.Unit
         {
             uut.StartCooking(50, 60);
             //Sat den korrekte output den får ind
-            timer.Received().Start(60*1000);
+            timer.Received().Start(60);
         }
 
         [Test]
