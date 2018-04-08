@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{07CADB0C-6F2B-45F0-BD95-F5F74E1A7A80}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AirTrafficLibrary</RootNamespace>
-    <AssemblyName>AirTrafficLibrary</AssemblyName>
+    <ProjectGuid>{92647FE0-67B3-4D84-B01D-E138149421EE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>AirTrafficLibraryConsole</RootNamespace>
+    <AssemblyName>AirTrafficLibraryConsole</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,16 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Display.cs" />
-    <Compile Include="Interface\IDisplay.cs" />
-    <Compile Include="Interface\IPathconfig.cs" />
-    <Compile Include="Interface\IPathCreator.cs" />
-    <Compile Include="Path.cs" />
-    <Compile Include="Pathconfig.cs" />
-    <Compile Include="PathCreator.cs" />
-    <Compile Include="PathEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

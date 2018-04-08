@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
-namespace AirTrafficLibrary
-{
-    public class PathEvent : EventArgs
-    {
-        public List<Path> Paths { get; set; }
-    }
-}
+//namespace AirTrafficLibrary
+//{
+//    public class PathEventArgs : EventArgs
+//    {
+//        public PathEventArgs(List<Path> Path)
+//        {
+//            Path = PathsEventArgs;
+//        }
+
+//        public List<Path> PathsEventArgs { get; set; }
+//    }
+//}

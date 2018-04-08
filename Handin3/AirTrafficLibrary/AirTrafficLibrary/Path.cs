@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficLibrary
 {
-    public class Path
+    public class Trackobject
     {
         public string Id { get; set; }
         public int Xcoord { get; set; }
