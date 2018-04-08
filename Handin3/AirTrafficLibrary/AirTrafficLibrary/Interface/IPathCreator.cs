@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AirTrafficLibrary
+namespace AirTrafficLibrary.Interface
 {
-    public class Class1
+    interface IPathCreator
     {
+        Path CreatePath(string info);
     }
 }

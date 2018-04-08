@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicrowaveOvenClasses.Interfaces
+namespace AirTrafficLibrary
 {
-    public interface IOutput
+    public class PathEvent : EventArgs
     {
-        void OutputLine(string line);
+        public List<Path> Paths { get; set; }
     }
 }

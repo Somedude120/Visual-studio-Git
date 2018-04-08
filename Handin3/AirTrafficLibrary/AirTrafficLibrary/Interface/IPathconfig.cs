@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicrowaveOvenClasses.Interfaces
+namespace AirTrafficLibrary.Interface
 {
-    public interface ILight
+    public interface IPathconfig
     {
-        void TurnOn();
-        void TurnOff();
+        event EventHandler<PathEvent> PathsUpdated;
     }
 }

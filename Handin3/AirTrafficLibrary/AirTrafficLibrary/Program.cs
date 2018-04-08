@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicrowaveOvenClasses.Interfaces
+namespace AirTrafficLibrary
 {
-    public interface IPowerTube
+    class Program
     {
-        void TurnOn(int power);
-
-        void TurnOff();
+        // hej
+        
     }
 }

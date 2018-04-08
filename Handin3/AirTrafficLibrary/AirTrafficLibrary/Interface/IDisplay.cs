@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicrowaveOvenClasses.Interfaces
+namespace AirTrafficLibrary.Interface
 {
     public interface IDisplay
     {
-        void ShowTime(int minutes, int seconds);
-        void ShowPower(int power);
-        void Clear();
     }
 }
