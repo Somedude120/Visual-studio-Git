@@ -28,6 +28,10 @@ namespace Program
             UserInterface ui = new UserInterface(btnPwr, btnTime, btnStartCancel, door, display, light, CC);
             CC.UI = ui;
 
+            CC.StartCooking(50,1);
+
+           
+
             Console.WriteLine("Microwave started!");
             Console.WriteLine("P increases power");
             Console.WriteLine("T sets the time");

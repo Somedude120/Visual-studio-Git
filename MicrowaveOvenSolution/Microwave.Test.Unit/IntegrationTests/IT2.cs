@@ -22,7 +22,8 @@ namespace Microwave.Test.Unit.IntegrationTests
     [TestFixture]
     class IT2
     {
-        //Vi tester Userinterface, powertube, cookcontroller, timer og display
+        //Vi tester Userinterface, powertube, cookcontroller, og display
+        //Ændret til at fjerne timer som en af dem der bliver testet, isoleret til IT3 og IT4 (pga. den måde programmet er opbygget).
         private UserInterface _uut1;
         private PowerTube _uut2;
         private CookController _uut3;
@@ -49,7 +50,8 @@ namespace Microwave.Test.Unit.IntegrationTests
             _startCancelButton = Substitute.For<IButton>();
     
             _uut5 = new Display(_output);
-            _uut4 = new Timer();
+            _uut4 = Substitute.For<Timer>();
+            //_uut4 = new Timer();
             _uut3 = new CookController(_uut4, _uut5, _uut2); //Timer, Display, Powertube
             _uut2 = new PowerTube(_output);
             _uut1 = new UserInterface(
@@ -103,6 +105,7 @@ namespace Microwave.Test.Unit.IntegrationTests
 
         }
 
+
         [Test]
         public void UI_Clear_Display()
         {
@@ -135,6 +138,6 @@ namespace Microwave.Test.Unit.IntegrationTests
             //Modtag fra powertuben 50 watts
             _output.Received().OutputLine(Arg.Is<string>(str => str.Contains((50).ToString())));
         }
-        
+
     }
 }

@@ -1,115 +1,73 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
+using Timer = MicrowaveOvenClasses.Boundary.Timer;
 
-namespace Microwave.Test.Integration
+namespace Microwave.Test.Intergration
 {
-    class IT4
+    [TestFixture]
+    public class IT4
     {
-        private IOutput _output;
-        private IDoor _door;
-        private ICookController _cookController;
-        private ILight _light;
-        private IPowerTube _powerTube;
+        //Ændret til test af timer, cookcontroller, UI
         private IDisplay _display;
-        private ITimer _timer;
-        private IButton _powerButton;
-        private IButton _timeButton;
-        private IButton _startCancelButton;
-        private IUserInterface _userInterface;
+        private IPowerTube _powerTube;
+        private IUserInterface _ui;
+        private IOutput _output;
+
+
+        private ITimer _uut1;
+        private ICookController _uut2;
+        
+
 
         [SetUp]
         public void SetUp()
         {
-            _door = new Door();
-            _powerButton = new Button();
-            _timeButton = new Button();
-            _startCancelButton = new Button();
             _output = Substitute.For<IOutput>();
-            _powerTube = new PowerTube(_output);
-            _display = new Display(_output);
-            _light = new Light(_output);
-            _timer = new Timer();
-            _cookController = new CookController(_timer, _display, _powerTube);
-            _userInterface = new UserInterface(_powerButton, _timeButton, _startCancelButton, _door, _display, _light, _cookController);
+            _powerTube = Substitute.For<IPowerTube>();
+            _ui = Substitute.For<IUserInterface>();
+            _display = Substitute.For<IDisplay>();
+            
+            _uut1 = new Timer();
+            _uut2 = new CookController(_uut1, _display, _powerTube);
+
         }
 
+
+        //Her testes om at CC kalder UI korrekt når tiden udløber
         [Test]
-        public void CookingActive_DoorOpened_OutputIs()
+        public void TimerOnExpire_CookControllerCallsTurnOff()
         {
-            _powerButton.Press();
-            _timeButton.Press();
-            _startCancelButton.Press();
-            _door.Open();
-            Received.InOrder(() =>
-            {
-                _output.Received().OutputLine("Display shows: 50 W");
-                _output.Received().OutputLine("Display shows: 01:00");
-                _output.Received().OutputLine("Display cleared");
-                _output.Received().OutputLine("PowerTube turned off");
-            });
-        }
+            //Lav en manual reset pause
+            ManualResetEvent pause = new ManualResetEvent(false);
 
+            //Start cookeren
+            _uut2.StartCooking(50, 1);
+
+            //Sæt en pause på 1500 sekunder
+            pause.WaitOne(1500);
+
+            //Se at den faktisk slukker derefter
+            _powerTube.Received().TurnOff();
+        }
         [Test]
-        public void OpenDoor_OutputIs()
+        public void TimerOnTimerTick_CookControllerCallsShowTime()
         {
-            _door.Open();
-            _output.Received().OutputLine("Light is turned on");
+            //Lav en manual reset pause
+            ManualResetEvent pause = new ManualResetEvent(false);
+
+            //Start timeren
+            _uut1.Start(4);
+
+            //Sæt en pause på 1500 sekunder
+            pause.WaitOne(1500);
+
+            //Se at displayed viser en tid på at der er gået 1 sekund
+            _display.Received().ShowTime(0, 3);
         }
-
-        [Test]
-        public void OpenCloseDoor_OutputIs()
-        {
-            _door.Open();
-            _door.Close();
-
-            Received.InOrder(() =>
-            {
-                _output.OutputLine("Light is turned on");
-                _output.OutputLine("Light is turned off");
-            });
-
-        }
-
-        [Test]
-        public void StartCancelPressed_SetupDone_OutputIs()
-        {
-            _powerButton.Press();
-            _timeButton.Press();
-            _startCancelButton.Press();
-
-            Received.InOrder(() =>
-            {
-                _output.OutputLine("Display shows: 50 W");
-                _output.OutputLine("Display shows: 01:00");
-            });
-        }
-
-        [Test]
-        public void StartCancelPressed_CookingActive_OutputIs()
-        {
-            _powerButton.Press();
-            _timeButton.Press();
-            _startCancelButton.Press();
-            _startCancelButton.Press();
-
-            Received.InOrder(() =>
-            {
-                _output.OutputLine("Display shows: 50 W");
-                _output.OutputLine("Display shows: 01:00");
-                _output.OutputLine("Display cleared");
-                _output.OutputLine("PowerTube turned off");
-                _output.OutputLine("Light is turned off");
-                _output.OutputLine("Display cleared");
-            });
-        }
-
     }
 }

@@ -1,97 +1,102 @@
 ﻿using System;
+using System.Threading;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
+using Timer = MicrowaveOvenClasses.Boundary.Timer;
 
 namespace Microwave.Test.Intergration
 {
     [TestFixture]
-    class IT3
+    public class IT3
     {
-        //Stubs
+        //Ændret til test af UI, Cookcontroller og timer
         private IDisplay _display;
-        private ILight _light;
         private ITimer _timer;
+        private IUserInterface _ui;
+
+        private ICookController _uut1;
         private IPowerTube _powerTube;
 
-        //Real
-        private IButton _powerButton;
-        private IButton _timeButton;
-        private IButton _startCancelButton;
-        private IDoor _door;
-
-        //UUT
-        private IUserInterface _uut_userInterface;
-        private CookController _uut_cookController;
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
-            //Stubs
-            _display = Substitute.For<IDisplay>();
-            _light = Substitute.For<ILight>();
+            //Det er en nødvendighed at bruge substitutioner pga. tests af aktuelle kald og kan ikke blive set på displayet
+            _ui = Substitute.For<IUserInterface>();
             _timer = Substitute.For<ITimer>();
+            _display = Substitute.For<IDisplay>();
             _powerTube = Substitute.For<IPowerTube>();
 
-            //Real
-            _powerButton = new Button();
-            _timeButton = new Button();
-            _startCancelButton = new Button();
-            _door = new Door();
+            _uut1 = new CookController(_timer, _display, _powerTube, _ui);
+        }
 
-            //UUT
-            _uut_cookController = new CookController(_timer, _display, _powerTube);
-            _uut_userInterface = new UserInterface(_powerButton, _timeButton, _startCancelButton, _door, _display, _light, _uut_cookController);
-            _uut_cookController.UI = _uut_userInterface;
+
+        
+        [Test]
+        public void CookControllerOnTimerExpired_PowerTube()
+        {
+            //Start cookcontroller med cooker
+            _uut1.StartCooking(50, 0);
+
+            //Se om når tiden er gået at den hæver et flag
+            _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+
+            //den skulle modtage noget fra powertube
+            _powerTube.Received().TurnOff();
+        }
+
+        //Test fra UI, cookcontroller til timer om når tiden går ud efter 1 sekund at den siger cooking is done
+        [Test]
+        public void CookControllerOnTimerExpired_UI()
+        {
+            //Start cookcontroller med at cooke
+            _uut1.StartCooking(50, 1000);
+            //Event flag
+            _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+            //Check om UI modtager cooking is done
+            _ui.Received().CookingIsDone();
+        }
+
+
+        //Checker om displayet viser en ny tid efter at blive startet fra CC, husk på at det er sekunder (6000), derfor skulle den helst vise 10 minutter
+        [Test]
+        public void CookControllerOnTimerTick_Display()
+        {
+            //Start cookcontroller med at cooke
+            _uut1.StartCooking(50, 600);
+
+            //display hvad der er på displayed når der er 600 sekunder tilbage
+            _timer.TimeRemaining.Returns(600);
+            //Event flag
+            _timer.TimerTick += Raise.EventWith(this, EventArgs.Empty);
+
+            //Check om det bliver vist på displayet
+            _display.Received().ShowTime(10, 0);
+            
+        }
+
+        //Test af timeren
+        [Test]
+        public void CookControllerStartCooking_Timer()
+        {
+            //Start cookcontroller med at cooke
+            _uut1.StartCooking(50, 30);
+
+            //Check om timer modtager Start(30)
+            _timer.Received().Start(30);
         }
 
         [Test]
-        public void UI_SetPowerTest_DisplayShowsPower()
+        public void CookControllerStopCooking_Timer()
         {
-            _powerButton.Press();
-            _display.Received(1).ShowPower(50);
-            _powerButton.Press();
-            _display.Received(1).ShowPower(100);
-            _powerButton.Press();
-            _display.Received(1).ShowPower(150);
-        }
+            //Stop cookcontroller
+            _uut1.Stop();
 
-        [Test]
-        public void UI_PowerOver700_PowerResets()
-        {
-            UI_SetPowerTest_DisplayShowsPower();
-            for (int i = 150; i < 700; i += 50)
-            {
-                _powerButton.Press();
-                _display.Received(1).ShowPower(i);
-            }
-            _powerButton.Press();
-            _display.ShowPower(50);
-        }
-
-        [Test]
-        public void UI_SetTimeTest_DisplayShowsTime()
-        {
-            _powerButton.Press();
-            _display.Received(1).ShowPower(50);
-            _timeButton.Press();
-            _display.Received(1).ShowTime(1, 0);
-            _timeButton.Press();
-            _display.Received(1).ShowTime(2, 0);
-            _timeButton.Press();
-            _display.Received(1).ShowTime(3, 0);
-        }
-
-        [Test]
-        public void UI_CC_StartCookingTest_LightPowerTimerOn()
-        {
-            UI_SetTimeTest_DisplayShowsTime();
-            _startCancelButton.Press();
-            _light.Received(1).TurnOn();
-            _powerTube.Received(1).TurnOn(7);
-            _timer.Received(1).Start(3 * 60);
+            //Check om timer har modtaget stop()
+            _timer.Received().Stop();
         }
     }
 }

@@ -60,6 +60,7 @@
     <Compile Include="IntegrationTests\IT2.cs" />
     <Compile Include="IntegrationTests\IT3.cs" />
     <Compile Include="IntegrationTests\IT4.cs" />
+    <Compile Include="IntegrationTests\IT5.cs" />
     <Compile Include="LightTest.cs" />
     <Compile Include="PowerTubeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
