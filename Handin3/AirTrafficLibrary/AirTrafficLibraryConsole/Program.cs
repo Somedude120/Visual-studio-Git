@@ -62,7 +62,7 @@ namespace AirTrafficLibrary
                 //sæt det ind i anden constructor til Track
                 //TrackObject obj3 = new TrackObject(ParsedFlight);
                 
-
+                if(FlightMonitor.MonitoredFlightData(ParsedFlight))
                 //Print ud
                 Console.WriteLine($"\nTag: {ParsedFlight[0]}\nXCoord: {ParsedFlight[1]}\nYCoord: {ParsedFlight[2]}\nAltitude: {ParsedFlight[3]}\nTimestamp: {ParsedFlight[4]}");
                 //Hans = obj.ParseFlightInfo(HANS);
