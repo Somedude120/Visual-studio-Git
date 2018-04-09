@@ -15,13 +15,15 @@ namespace AirTrafficLibrary
 
         static void Main()
         {
+            ITransponderReceiver TransponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
+            TransponderReceiver.TransponderDataReady += TransponderReceiverOnTransponderDataReady;
+            
+
             while (true)
             {
                 System.Threading.Thread.Sleep(1500);
 
-                ITransponderReceiver TransponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
-                TransponderReceiver.TransponderDataReady += TransponderReceiverOnTransponderDataReady;
-
+            
             }
 
             //string timetest = "20151006213456789";
@@ -49,14 +51,13 @@ namespace AirTrafficLibrary
             //Jeg vil gerne se igennem denne liste TransponderData der ligger i eventargen
             foreach (var HANS in rawTransponderDataEventArgs.TransponderData)
             {
-                Hans = obj.ParseFlightInfo(HANS);
-                Console.WriteLine(Hans);
+                Track obj1 = new Track(rawTransponderDataEventArgs.TransponderData);
+                var parsedFlight = Parse.FormatTimestamp(HANS);
+                //Hans = obj.ParseFlightInfo(HANS);
+                var date = Parse.FormatTimestamp(parsedFlight);
+                
+                
             }
-        }
-
-        public void TrackObject()
-        {
-
         }
 
         static public long Velocity(int hour, int minutes, int seconds, int miliseconds)
