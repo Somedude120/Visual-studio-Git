@@ -45,12 +45,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FlightMonitor.cs" />
-    <Compile Include="Parse.cs" />
+    <Compile Include="Classes\DataHandler.cs" />
+    <Compile Include="Classes\FlightMonitor.cs" />
+    <Compile Include="Classes\EventHandling.cs" />
+    <Compile Include="Classes\Plane.cs" />
+    <Compile Include="Interface\IEventHandler.cs" />
+    <Compile Include="Classes\Parse.cs" />
+    <Compile Include="Interface\IPlaneInfo.cs" />
+    <Compile Include="Interface\IPrint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Track.cs" />
-    <Compile Include="TrackObject.cs" />
+    <Compile Include="Classes\TrackConversion.cs" />
+    <Compile Include="Classes\TrackObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

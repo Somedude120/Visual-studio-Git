@@ -1,38 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.Remoting.Services;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using AirTrafficLibraryConsole.Classes;
+using AirTrafficLibrary.Interface;
 using TransponderReceiver;
 
-namespace AirTrafficLibrary
+namespace AirTrafficLibraryConsole.Classes
 {
-    class Program
+    public class EventHandling : IEventHandler
     {
-        
-        static void Main()
-        {
-            
-            //ITransponderReceiver TransponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
-            //TransponderReceiver.TransponderDataReady += TransponderReceiverOnTransponderDataReady;
-            EventHandling Events = new EventHandling();
-            Events.TransponderEventHandler();
+        private ITransponderReceiver TransponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
 
-            while (true)
-            {
-                
-            }
-            
+        public void TransponderEventHandler()
+        {
+            TransponderReceiver.TransponderDataReady += TransponderReceiverOnTransponderDataReady;
         }
 
-        static private void TransponderReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs rawTransponderDataEventArgs)
+        private void TransponderReceiverOnTransponderDataReady(object sender,
+            RawTransponderDataEventArgs rawTransponderDataEventArgs)
         {
             DataHandler _dataHandler = new DataHandler();
-            
+
             //Klargøring at noget skal "formateres"
             Parse obj = new Parse();
             //Jeg vil gerne se igennem denne liste TransponderData der ligger i eventargen
@@ -54,26 +40,13 @@ namespace AirTrafficLibrary
                 TrackObject _trackobject = new TrackObject(ParsedFlight);
 
                 if (FlightMonitor.MonitoredFlightData(ParsedFlight))
-                obj1.Print();
+                    obj1.Print();
                 //Console.WriteLine($"\nTag: {ParsedFlight[0]}\nXCoord: {ParsedFlight[1]}\nYCoord: {ParsedFlight[2]}\nAltitude: {ParsedFlight[3]}\nTimestamp: {ParsedFlight[4]}");
                 //Print ud
 
                 //Hans = obj.ParseFlightInfo(HANS);
 
-
             }
         }
-
-        static public long Velocity(int hour, int minutes, int seconds, int miliseconds)
-        {
-            int oldhour = hour - hour;
-            int oldminute = minutes - minutes;
-            int oldseconds = seconds - seconds;
-            long result = 0;
-
-
-            return result;
-        }
-
     }
 }
