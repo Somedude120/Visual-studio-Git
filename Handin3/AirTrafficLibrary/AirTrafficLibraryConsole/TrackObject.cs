@@ -21,10 +21,10 @@ namespace AirTrafficLibrary
             _alt = trackInfo[3];
             _datetime = trackInfo[4];
         }
-
-        //public void AddTrack(Track obj)
-        //{
-        //    _tracklist.Add(obj);
-        //}
+        
+        public void AddTrack(Track obj)
+        {
+            _tracklist.Add(obj);
+        }
     }
 }

@@ -6,11 +6,20 @@ namespace AirTrafficLibrary
     //Objektifikation af Track
     public class Track
     {
+        private string _unformattedInfo;
         private string _tag;
         private string _xcoord;
         private string _ycoord;
         private string _alt;
         private string _datetime;
+
+        public string UnformattedInfo
+        {
+            get { return _unformattedInfo; }
+
+            set { value = _unformattedInfo; }
+        }
+        
 
         public Track(List<string> planelist)
         {
@@ -19,6 +28,12 @@ namespace AirTrafficLibrary
             _ycoord = planelist[2];
             _alt = planelist[3];
             _datetime = planelist[4];
+        }
+
+        public Track(string info)
+        {
+            //string skal converteres
+            _unformattedInfo = info;
         }
 
         public void Print()
