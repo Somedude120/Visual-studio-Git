@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using AirTrafficLibraryConsole.Classes;
 using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
@@ -38,11 +40,25 @@ namespace AirTrafficLibrary.Test.Unit
         }
 
         [Test]
-        public void TrackIsValid_MinAltitude()
+        public void TrackContainsTag()
+        {
+            TrackConversion trackC = new TrackConversion("hans", "15000", "20000", "10000", "10042018");
+            Assert.That(trackC._tag == "hans");
+        }
+
+        [Test]
+        public void TrackContainsXCoord()
+        {
+            TrackConversion trackC = new TrackConversion("hans", "15000", "20000", "10000", "10042018");
+            Assert.That(trackC._xcoord == "15000");
+        }
+
+
+        [Test]
+        public void TrackIsValid_MinXCoord()
         {
 
         }
-
 
         [Test]
         public void TrackIsValid_MaxXCoord()
@@ -51,7 +67,24 @@ namespace AirTrafficLibrary.Test.Unit
         }
 
         [Test]
-        public void TrackIsValid_MinXCoord()
+        public void TrackContainsYCoord()
+        {
+            TrackConversion trackC = new TrackConversion("hans", "15000", "20000", "10000", "10042018");
+            Assert.That(trackC._ycoord == "20000");
+
+        }
+
+        [Test]
+        public void TrackWritesLineToConsole()
+        {
+            TrackConversion trackC = new TrackConversion("hans", "15000", "20000", "10000", "10042018");
+            trackC.Print();
+
+            System.Diagnostics.Debug.WriteLine("Ta: hans");
+        }
+
+        [Test]
+        public void TrackIsValid_MinYCoord()
         {
 
         }
@@ -61,14 +94,6 @@ namespace AirTrafficLibrary.Test.Unit
         {
 
         }
-
-        [Test]
-        public void TrackIsValid_MinYCoord()
-        {
-
-        }
-
-
     }
 }
 
