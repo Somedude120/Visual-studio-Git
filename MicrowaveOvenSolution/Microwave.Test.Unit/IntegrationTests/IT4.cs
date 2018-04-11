@@ -12,7 +12,6 @@ namespace Microwave.Test.Intergration
     [TestFixture]
     public class IT4
     {
-        //Test
         //Ændret til test af timer, cookcontroller, UI
         private IDisplay _display;
         private IPowerTube _powerTube;
