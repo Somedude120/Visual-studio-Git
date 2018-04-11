@@ -12,10 +12,10 @@ using NSubstitute.ExceptionExtensions;
 using Assert = NUnit.Framework.Assert;
 
 //Vi skal teste mellem Light og UI, vi afbenytter os af buttons, display, door, output, cooker som stubbe imens vi tester light og UI.
-namespace Microwave.Test.Unit.Tests
+namespace Microwave.Test.Unit.IntegrationTests
 {
     [TestFixture]
-    public class IntegrationTest1
+    public class IT1
     {
         //Vi tester Userinterface og light
         private UserInterface _uut1;
