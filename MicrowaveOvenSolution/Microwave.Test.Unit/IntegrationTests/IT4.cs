@@ -7,7 +7,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Timer = MicrowaveOvenClasses.Boundary.Timer;
 
-namespace Microwave.Test.Intergration
+namespace Microwave.Test.Unit.IntegrationTests
 {
     [TestFixture]
     public class IT4
@@ -15,8 +15,7 @@ namespace Microwave.Test.Intergration
         //Ændret til test af timer, cookcontroller, UI
         private IDisplay _display;
         private IPowerTube _powerTube;
-        private IUserInterface _ui;
-        private IOutput _output;
+
 
 
         private ITimer _uut1;
@@ -27,9 +26,7 @@ namespace Microwave.Test.Intergration
         [SetUp]
         public void SetUp()
         {
-            _output = Substitute.For<IOutput>();
             _powerTube = Substitute.For<IPowerTube>();
-            _ui = Substitute.For<IUserInterface>();
             _display = Substitute.For<IDisplay>();
             
             _uut1 = new Timer();
