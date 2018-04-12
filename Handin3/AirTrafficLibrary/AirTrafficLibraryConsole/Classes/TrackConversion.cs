@@ -6,19 +6,14 @@ namespace AirTrafficLibraryConsole.Classes
     //Objektifikation af Track
     public class TrackConversion
     {
-        public string _unformattedInfo;
-        public string _tag;
-        public string _xcoord;
-        public string _ycoord;
-        public string _alt;
-        public string _datetime;
+        //public string _unformattedInfo;
+        public string _tag { get; set; }
+        public string _xcoord { get; set; }
+        public string _ycoord { get; set; }
+        public string _alt { get; set; }
+        public string _datetime { get; set; }
         //public string UnformattedInfo { get; set; }
-        public string UnformattedInfo
-        {
-            get { return _unformattedInfo; }
-
-            set { value = _unformattedInfo; }
-        }
+        public string UnformattedInfo { get; set; }
 
         public TrackConversion(string tag, string xcoord, string ycoord, string alt, string datetime)
         {
@@ -32,7 +27,7 @@ namespace AirTrafficLibraryConsole.Classes
         public TrackConversion(string info)
         {
             //string skal converteres
-            _unformattedInfo = info;
+            UnformattedInfo = info;
         }
 
         public void Print()
@@ -51,6 +46,6 @@ namespace AirTrafficLibraryConsole.Classes
             _ycoord = planelist[2];
             _alt = planelist[3];
             _datetime = planelist[4];
-        }
+        }-
     }
 }
