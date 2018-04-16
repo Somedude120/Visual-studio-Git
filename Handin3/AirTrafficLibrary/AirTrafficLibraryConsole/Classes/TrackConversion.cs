@@ -46,6 +46,6 @@ namespace AirTrafficLibraryConsole.Classes
             _ycoord = planelist[2];
             _alt = planelist[3];
             _datetime = planelist[4];
-        }-
+        }
     }
 }
