@@ -23,7 +23,7 @@ namespace AirTrafficLibrary
 
             //}
 
-            double x1 = 10, x2 = 90, y1 = 45, y2 = 45;
+            double x1 = 10, x2 = 10, y1 = 10, y2 = 90;
             Console.WriteLine(CalculateCourse(x1, x2, y1, y2));
         }
 
@@ -42,7 +42,7 @@ namespace AirTrafficLibrary
             double Rad2Deg = 180.0 / Math.PI;
             double dx = x2 - x1;
             double dy = y2 - y1;
-            double angle = Math.Atan2(dy, dx) * Rad2Deg;
+            double angle = 90 - Math.Atan2(dy, dx) * Rad2Deg;
 
             if (angle <= 0)
             {
