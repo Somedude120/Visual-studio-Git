@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CalculateCourse.cs" />
     <Compile Include="Classes\DataHandler.cs" />
     <Compile Include="Classes\FlightMonitor.cs" />
     <Compile Include="Classes\EventHandling.cs" />

@@ -23,8 +23,14 @@ namespace AirTrafficLibrary
 
             //}
 
-            double x1 = 10, x2 = 10, y1 = 10, y2 = 90;
-            Console.WriteLine(CalculateCourse(x1, x2, y1, y2));
+            
+            double x1 = 10, x2 = 90, y1 = 10, y2 = 90;
+            CalculateCourse calculus = new CalculateCourse(x1, x2, y1 , y2);
+            //Console.WriteLine(calculus._x1);
+            Console.WriteLine(calculus._Angle);
+            //Console.WriteLine(calculus.Calculate(x1,x2,y1,y2));
+            
+            
         }
 
         public static long Velocity(int hour, int minutes, int seconds, int miliseconds)
@@ -36,38 +42,7 @@ namespace AirTrafficLibrary
 
             return result;
         }
-
-        public static double CalculateCourse(double x1, double x2, double y1, double y2)
-        {
-            double Rad2Deg = 180.0 / Math.PI;
-            double dx = x2 - x1;
-            double dy = y2 - y1;
-            double angle = 90 - Math.Atan2(dy, dx) * Rad2Deg;
-
-            if (angle <= 0)
-            {
-                angle = angle + 360;
-            }
-
-            return angle;
-
-            //var dif = newY - oldY;
-            //Console.WriteLine(dif);
-            //var x = Math.Cos(newX) * Math.Sin(dif);
-            //Console.WriteLine(x);
-
-            ////oldX = 39 -- newX = 38 -- oldY = -94.5 -- newY = -90.200
-
-            ////Y = cos(39.099912) * sin(38.627089) – sin(39.099912) * cos(38.627089) * cos(4.38101)
-
-            //var y = Math.Cos(oldX) * Math.Sin(newX) - Math.Sin(oldX) * Math.Cos(newX) * Math.Cos(dif);
-            //Console.WriteLine(y);
-
-            //var degrees = Math.Atan2(x, y);
-            //degrees = degrees * 180 / Math.PI;
-
-            //return degrees;
-        }
+        
     }
 }
 
