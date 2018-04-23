@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace AirTrafficLibraryConsole.Classes
 {
+    //test af pipelineview
     //Objektifikation af Track
     public class TrackConversion
     {
