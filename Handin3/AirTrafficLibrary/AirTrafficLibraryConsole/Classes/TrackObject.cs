@@ -12,7 +12,6 @@ namespace AirTrafficLibraryConsole.Classes
         public string _hVelocity { get; set; }
         public string _direction { get; set; }
 
-
         public TrackObject(List<string> trackInfo)
         {
             _tag = trackInfo[0];
@@ -22,7 +21,6 @@ namespace AirTrafficLibraryConsole.Classes
             _datetime = trackInfo[4];
             _direction = "0";
             _hVelocity = "0";
-
         }
     }
 }
