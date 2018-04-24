@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AirTrafficLibrary.Interface;
+
+
 //https://stackoverflow.com/questions/20185015/how-to-write-log-file-in-c
 
 
@@ -21,6 +23,11 @@ namespace AirTrafficLibraryConsole.Classes
             //asd
             try
             {
+                if (str == "")
+                {
+                    throw new ArgumentException("The provided string is empty");
+                }
+
                 using (StreamWriter w = File.AppendText(_filePath + "\\" + "SeperationLog.txt"))
                 {
                      w.Write(str);

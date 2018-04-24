@@ -45,10 +45,10 @@ namespace AirTrafficLibraryConsole.Classes
 
                 if (FlightMonitor.MonitoredFlightData(ParsedFlight))
                 _printinfo = new Print(_trackobject);;
-                
+                            tracklist = tracker.Calculation(tracklist);
             }
             
-            tracklist = tracker.Calculation(tracklist);
+
             if (tracklist.Count != 0)
             {
                 tracker.Course(tracklist);

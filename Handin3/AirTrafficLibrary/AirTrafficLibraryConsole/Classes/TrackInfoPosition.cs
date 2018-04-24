@@ -22,7 +22,7 @@ namespace AirTrafficLibraryConsole.Classes
             
             if (oldList.Count != 0 && oldList != newlist)
             {
-                Console.WriteLine(oldList[0]._xCoord);
+                //Console.WriteLine(oldList[0]._xCoord);
                 List<TrackObject> local = new List<TrackObject>(newlist);
                 local = SortTrackObjects(local);
                 //CalculateSpeed(local);
@@ -36,7 +36,7 @@ namespace AirTrafficLibraryConsole.Classes
         {
             for (int i = 0; i < newlist.Count; i++)
             {
-                Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
+                //Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
                 double x1 = Convert.ToDouble(newlist[i]._xCoord);
                 double x2 = Convert.ToDouble(oldList[i]._xCoord);
                 double y1 = Convert.ToDouble(oldList[i]._yCoord);
