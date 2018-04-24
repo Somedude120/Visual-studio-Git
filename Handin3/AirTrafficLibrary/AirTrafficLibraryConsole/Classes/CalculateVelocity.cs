@@ -37,7 +37,6 @@ namespace AirTrafficLibraryConsole.Classes
             {
                 time = time * -1;
                 speed = c / time;
-
             }
             else if (time > 0)
             { speed = c / time; }
