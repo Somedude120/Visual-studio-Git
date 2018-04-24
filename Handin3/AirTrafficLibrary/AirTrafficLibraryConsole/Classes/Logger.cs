@@ -13,45 +13,35 @@ using AirTrafficLibrary.Interface;
 
 namespace AirTrafficLibraryConsole.Classes
 {
-    public class Logger : ILogger
+    public class Logger
     {
-        public string Path { get; set; }
-
-        public Logger(string path = @"Seperation.Txt") => Path = path;
-
-        public void LogWriter(List<SeperationEvent> seperationEvents)
+        private string _filePath = string.Empty;
+        public Logger(string logMessage)
         {
-            using (StreamWriter log = new StreamWriter(Path, true))
-            {
-                for(int i = 0;  i < seperationEvents.Count; i++)
-                {
-                    log.WriteLine(i);
-                }
-            }
+            LogWriter(logMessage);
         }
 
+        public void LogWriter(string str)
+        {
+            _filePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-        //public void LogWriter(string str)
-        //{
-        //    _filePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            
-        //    try
-        //    {
-        //        if (str == "")
-        //        {
-        //            throw new ArgumentException("The provided string is empty");
-        //        }
+            try
+            {
+                if (str == "")
+                {
+                    throw new ArgumentException("The provided string is empty");
+                }
 
-        //        using (StreamWriter w = File.AppendText(_filePath + "\\" + "SeperationLog.txt"))
-        //        {
-        //             w.Write(str);
-        //        }
-        //    }
-        //    catch (ArgumentException e)
-        //    {
-        //        Console.WriteLine(e.Message);
-        //        throw;
-        //    }
-        //}
+                using (StreamWriter w = File.AppendText(_filePath + "\\" + "SeperationLog.txt"))
+                {
+                    w.Write(str);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+        }
     }
 }
