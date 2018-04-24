@@ -7,13 +7,11 @@ namespace AirTrafficLibraryConsole.Classes
     //Objektifikation af Track
     public class TrackConversion
     {
-        //public string _unformattedInfo;
         public string _tag { get; set; }
         public string _xcoord { get; set; }
         public string _ycoord { get; set; }
         public string _alt { get; set; }
         public string _datetime { get; set; }
-        //public string UnformattedInfo { get; set; }
         public string UnformattedInfo { get; set; }
 
         public TrackConversion(string tag, string xcoord, string ycoord, string alt, string datetime)
