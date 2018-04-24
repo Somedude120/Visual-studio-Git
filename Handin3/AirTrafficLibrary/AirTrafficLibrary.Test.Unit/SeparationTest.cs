@@ -25,13 +25,14 @@ namespace AirTrafficLibrary.Test.Unit
         [Test]
         public void IsACollisionHappeningTrue()
         {
-            double xcoords1 = _track1._xCoord = 20;
-            double ycoords1 = _track1._yCoord = 20;
-            double xcoords2 = _track2._xCoord = 20;
-            double ycoords2 = _track2._xCoord = 20;
+            _track1._xCoord = 20;
+            _track1._yCoord = 20;
+            _track2._xCoord = 20;
+            _track2._yCoord = 20;
+            bool something = _uut.CollisionDetection(_track1, _track2);
 
-           
-            Assert.AreEqual(_uut.CollisionDetection(_track1, _track2), true);
+
+            Assert.AreEqual(something, true);
 
         }
     }
