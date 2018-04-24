@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using AirTrafficLibraryConsole.Interface;
 
 namespace AirTrafficLibraryConsole.Classes
 {
-    public class TrackObject
+    public class TrackObject : ITrack
     {
         public string _tag { get; set; }
         public double _xCoord { get; set; }

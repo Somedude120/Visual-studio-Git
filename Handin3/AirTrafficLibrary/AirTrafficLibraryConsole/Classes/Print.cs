@@ -1,10 +1,11 @@
 ﻿using System;
+using AirTrafficLibraryConsole.Interface;
 
 namespace AirTrafficLibraryConsole.Classes
 {
     public class Print
     {
-        public Print(TrackObject track)
+        public Print(ITrack track)
         {
             Console.WriteLine("Tag:\t\t" + track._tag);
             Console.WriteLine("X coordinate:\t" + track._xCoord + " meters");
