@@ -8,8 +8,8 @@ namespace AirTrafficLibraryConsole.Interface
 {
     public interface ICoords
     {
-        int y { get; set; }
-        int x { get; set; }
+        int Y { get; set; }
+        int X { get; set; }
 
     }
 }
