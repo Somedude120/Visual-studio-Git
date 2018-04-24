@@ -34,7 +34,7 @@ namespace AirTrafficLibraryConsole.Classes
         //public void LogWriter(string str)
         //{
         //    _filePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
+            
         //    try
         //    {
         //        if (str == "")
@@ -44,7 +44,7 @@ namespace AirTrafficLibraryConsole.Classes
 
         //        using (StreamWriter w = File.AppendText(_filePath + "\\" + "SeperationLog.txt"))
         //        {
-        //            w.Write(str);
+        //             w.Write(str);
         //        }
         //    }
         //    catch (ArgumentException e)

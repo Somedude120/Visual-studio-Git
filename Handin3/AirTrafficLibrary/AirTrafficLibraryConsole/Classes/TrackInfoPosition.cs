@@ -136,7 +136,7 @@ namespace AirTrafficLibraryConsole.Classes
                 .ToList();
             for (int i = 0; i < sortList.Count; i++)
             {
-                Console.WriteLine(sortList[i]._tag); //Testloop
+                //Console.WriteLine(sortList[i]._tag); //Testloop
 
             }
             return sortList;
