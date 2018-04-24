@@ -10,7 +10,7 @@ namespace AirTrafficLibraryConsole.Classes
             Console.WriteLine("X coordinate:\t" + track._xCoord + " meters");
             Console.WriteLine("Y coordinate:\t" + track._yCoord + " meters");
             Console.WriteLine("Altitude:\t" + track._alt + " meters");
-            Console.WriteLine("Timestamp:\t" + track._datetime);
+            Console.WriteLine("Timestamp:\t" + track._formattedTime);
             Console.WriteLine("Direction:\t" + track._direction);
             Console.WriteLine("Velocity:\t" + track._hVelocity);
             Console.WriteLine();
