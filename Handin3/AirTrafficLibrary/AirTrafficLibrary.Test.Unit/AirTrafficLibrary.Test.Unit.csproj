@@ -62,7 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalcCourseTest.cs" />
+    <Compile Include="VelocityTest.cs" />
     <Compile Include="CourseTest.cs" />
     <Compile Include="EventTest.cs" />
     <Compile Include="LoggerTest.cs" />
