@@ -83,8 +83,8 @@ namespace AirTrafficLibraryConsole.Classes
                 double x2 = oldList[i]._xCoord;
                 double y1 = newlist[i]._yCoord;
                 double y2 = oldList[i]._xCoord;
-                var newTO = newlist[i]._timestamp;
-                var oldTO = oldList[i]._timestamp;
+                var newTO = (newlist[i]._timestamp.Second) + newlist[i]._timestamp.Millisecond;
+                var oldTO = (oldList[i]._timestamp.Second) + oldList[i]._timestamp.Millisecond;
 
 
                 //Console.WriteLine("Newtime: " + newTO);
@@ -92,8 +92,9 @@ namespace AirTrafficLibraryConsole.Classes
                 
                 string difftime = Convert.ToString(newTO - oldTO);
 
-                double distance = _distance.CalcVelocity(x1, x2, y1, y2);
-                double velocity = distance / TimeSpan.Parse(difftime).Minutes;
+                double diffDouble = Convert.ToDouble(difftime);
+                double velocity = _distance.CalcVelocity(x1, x2, y1, y2, diffDouble);
+                
                 newlist[i]._hVelocity = velocity;
                 //Console.WriteLine("Velocity " + velocity);
                 
