@@ -69,7 +69,6 @@
     <Compile Include="Interface\IEventHandler.cs" />
     <Compile Include="Classes\Parse.cs" />
     <Compile Include="Interface\ILogger.cs" />
-    <Compile Include="Interface\IPlaneInfo.cs" />
     <Compile Include="Interface\IPrint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
