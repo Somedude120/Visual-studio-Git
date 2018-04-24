@@ -7,7 +7,7 @@ using AirTrafficLibraryConsole.Interface;
 
 namespace AirTrafficLibraryConsole.Classes
 {
-    class CalculateVelocity
+    public class CalculateVelocity
     {
         public double CalcVelocity(double x1, double x2, double y1, double y2, double time)
         {
@@ -37,7 +37,6 @@ namespace AirTrafficLibraryConsole.Classes
             {
                 time = time * -1;
                 speed = c / time;
-
             }
             else if (time > 0)
             { speed = c / time; }
