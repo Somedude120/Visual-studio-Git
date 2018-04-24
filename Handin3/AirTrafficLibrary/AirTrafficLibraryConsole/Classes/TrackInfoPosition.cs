@@ -81,48 +81,27 @@ namespace AirTrafficLibraryConsole.Classes
                 //Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
                 double x1 = newlist[i]._xCoord;
                 double x2 = oldList[i]._xCoord;
-                double y1 = oldList[i]._yCoord;
+                double y1 = newlist[i]._yCoord;
                 double y2 = oldList[i]._xCoord;
                 var newTO = newlist[i]._timestamp;
                 var oldTO = oldList[i]._timestamp;
 
+
+                //Console.WriteLine("Newtime: " + newTO);
+                //Console.WriteLine("Oldtime: " + oldTO);
+                
                 string difftime = Convert.ToString(newTO - oldTO);
 
                 double distance = _distance.CalcVelocity(x1, x2, y1, y2);
-                double velocity = distance / TimeSpan.Parse(difftime).Seconds;
+                double velocity = distance / TimeSpan.Parse(difftime).Minutes;
                 newlist[i]._hVelocity = velocity;
                 //Console.WriteLine("Velocity " + velocity);
-
+                
                 //double _distance = 
             }
 
 
             return newlist;
-
-            //Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
-            //double x1 = Convert.ToDouble(newlist[newlist.Count - 1]._xCoord);
-            //double x2 = Convert.ToDouble(oldlist[oldlist.Count - 1]._xCoord);
-            //double y1 = Convert.ToDouble(newlist[newlist.Count - 1]._yCoord);
-            //double y2 = Convert.ToDouble(oldlist[oldlist.Count - 1]._yCoord);
-            //double time1 = Convert.ToDouble(newlist[newlist.Count - 1]._timestamp.Hour + newlist[newlist.Count - 1]._timestamp.Second);
-            //double time2 = Convert.ToDouble(oldlist[oldlist.Count - 1]._timestamp.Hour + oldlist[oldlist.Count - 1]._timestamp.Second);
-
-            //var newTO = newlist[newlist.Count - 1]._timestamp;
-            //var oldTO = oldlist[oldlist.Count - 1]._timestamp;
-
-            //TimeSpan timecalc = newTO.Subtract(oldTO);
-            //Console.WriteLine(timecalc);
-
-            //_velocity = new CalculateVelocity();
-            //double distance = _velocity.CalcVelocity(x1, x2, y1, y2);
-
-            ////double velocitycalculated = distance / timecalc;
-
-            ////Console.WriteLine("Speed " + velocitycalculated + "m/s " + " tag: " + newlist[newlist.Count - 1]._tag);
-            ////newlist[]._direction = Convert.ToString(_course._Angle);
-            ////Console.WriteLine("test " + newlist[i]._direction + " object: " + newlist[i]._tag);
-
-            //return newlist;
 
         }
 
