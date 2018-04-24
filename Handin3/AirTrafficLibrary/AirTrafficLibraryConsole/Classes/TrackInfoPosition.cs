@@ -90,7 +90,8 @@ namespace AirTrafficLibraryConsole.Classes
 
                 double distance = _distance.CalcVelocity(x1, x2, y1, y2);
                 double velocity = distance / TimeSpan.Parse(difftime).Seconds;
-                Console.WriteLine("Velocity " + velocity);
+                newlist[i]._hVelocity = velocity;
+                //Console.WriteLine("Velocity " + velocity);
 
                 //double _distance = 
             }
