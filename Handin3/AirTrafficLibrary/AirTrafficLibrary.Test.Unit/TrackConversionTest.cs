@@ -65,8 +65,11 @@ namespace AirTrafficLibrary.Test.Unit
         [Test]
         public void TrackWritesLineToConsole()
         {
-            TrackConversion trackC = new TrackConversion("hans", "15000", "20000", "10000", "10042018");
-            trackC.Print();
+            //List<string> listA = new List<string>();
+            //TrackConversion trackB = new TrackConversion("hans", "15000", "20000", "10000", "10042018");
+
+            //TrackObject trackC = new TrackObject(listA);
+            //Print printing = new Print(trackB);
 
 
             System.Diagnostics.Debug.WriteLine("Ta: hans");

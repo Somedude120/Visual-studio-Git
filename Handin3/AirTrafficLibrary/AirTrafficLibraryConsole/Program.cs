@@ -15,22 +15,23 @@ namespace AirTrafficLibrary
     {
         static void Main()
         {
-            //EventHandling Events = new EventHandling();
-            //Events.TransponderEventHandler();
+            EventHandling Events = new EventHandling();
+            Events.TransponderEventHandler();
 
-            //while (true)
-            //{
+            while (true)
+            {
 
-            //}
+            }
 
-            
-            double x1 = 10, x2 = 90, y1 = 10, y2 = 90;
-            CalculateCourse calculus = new CalculateCourse(x1, x2, y1 , y2);
-            //Console.WriteLine(calculus._x1);
-            Console.WriteLine(calculus._Angle);
-            //Console.WriteLine(calculus.Calculate(x1,x2,y1,y2));
-            
-            
+
+
+            //double x1 = 10, x2 = 90, y1 = 10, y2 = 90;
+            //CalculateCourse calculus = new CalculateCourse(x1, x2, y1 , y2);
+            ////Console.WriteLine(calculus._x1);
+            //Console.WriteLine(calculus._Angle);
+            ////Console.WriteLine(calculus.Calculate(x1,x2,y1,y2));
+
+
         }
 
         public static long Velocity(int hour, int minutes, int seconds, int miliseconds)

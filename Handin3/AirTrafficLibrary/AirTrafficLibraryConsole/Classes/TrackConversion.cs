@@ -30,16 +30,6 @@ namespace AirTrafficLibraryConsole.Classes
             //string skal converteres
             UnformattedInfo = info;
         }
-
-        public void Print()
-        {
-            Console.WriteLine("Tag:\t\t" + _tag);
-            Console.WriteLine("X coordinate:\t" + _xcoord + " meters");
-            Console.WriteLine("Y coordinate:\t" + _ycoord + " meters");
-            Console.WriteLine("Altitude:\t" + _alt + " meters");
-            Console.WriteLine("Timestamp:\t" + _datetime);
-            Console.WriteLine();
-        }
         public void List(List<string> planelist)
         {
             _tag = planelist[0];
