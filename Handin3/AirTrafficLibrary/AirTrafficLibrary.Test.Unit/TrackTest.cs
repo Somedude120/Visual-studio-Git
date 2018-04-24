@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AirTrafficLibraryConsole.Classes;
 using NSubstitute.Exceptions;
 using NUnit.Framework;
@@ -12,10 +13,11 @@ namespace AirTrafficLibrary.Test.Unit
         private TrackObject _trackObject;
         private List<string> _List;
         private string _tag;
-        private string _xcoord;
-        private string _ycoord;
-        private string _altitude;
-        private string _dateTime;
+        private double _xcoord;
+        private double _ycoord;
+        private double _altitude;
+        private DateTime _dateTime;
+        private Parse _parse;
 
         [SetUp]
         public void Setup()
@@ -23,10 +25,13 @@ namespace AirTrafficLibrary.Test.Unit
             _List = new List<string>{"Flammen","9000","9000","5000", "20181111111111111" };
             _trackObject = new TrackObject(_List);
             _tag = _List[0];
-            _xcoord = _List[1];
-            _ycoord = _List[2];
-            _altitude = _List[3];
-            _dateTime = _List[4];
+            _xcoord = double.Parse(_List[1]);
+            _ycoord = double.Parse(_List[2]);
+            _altitude = double.Parse(_List[3]);
+            _dateTime = DateTime.ParseExact(_List[4], "yyyyMMddHHmmssfff",
+                System.Globalization.CultureInfo.InvariantCulture);
+            _parse = new Parse();
+
             
         }
 
@@ -54,7 +59,7 @@ namespace AirTrafficLibrary.Test.Unit
         [Test]
         public void TrackObject_Receive_DateTime()
         {
-            Assert.That(_dateTime, Is.EqualTo(_trackObject._formattedTime));
+            Assert.AreEqual(_dateTime, _trackObject._timestamp);
         }
     }
 }
