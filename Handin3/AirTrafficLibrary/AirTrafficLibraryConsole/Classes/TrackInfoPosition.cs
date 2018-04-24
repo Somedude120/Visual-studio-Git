@@ -19,8 +19,8 @@ namespace AirTrafficLibraryConsole.Classes
         public List<TrackObject> Calculation(List<TrackObject> newlist)
         {
             currentList = newlist;
-            
-            if (oldList.Count != 0 && oldList != newlist)
+
+            if (oldList.Count != 0 && oldList != currentList)
             {
                 Console.WriteLine(oldList[0]._xCoord);
                 List<TrackObject> local = new List<TrackObject>(newlist);
@@ -28,7 +28,11 @@ namespace AirTrafficLibraryConsole.Classes
                 //CalculateSpeed(local);
                 Course(local);
             }
-            oldList = newlist;
+            else
+            {
+                oldList = newlist;
+            }
+
             return currentList;
         }
 

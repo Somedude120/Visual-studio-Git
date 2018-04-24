@@ -6,8 +6,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AirTrafficLibrary.Interface;
-//https://stackoverflow.com/questions/20185015/how-to-write-log-file-in-c
 
+//https://stackoverflow.com/questions/20185015/how-to-write-log-file-in-c
 
 namespace AirTrafficLibraryConsole.Classes
 {
@@ -18,7 +18,7 @@ namespace AirTrafficLibraryConsole.Classes
         public void LogWriter(string str)
         {
             _filePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            //asd
+
             try
             {
                 using (StreamWriter w = File.AppendText(_filePath + "\\" + "SeperationLog.txt"))

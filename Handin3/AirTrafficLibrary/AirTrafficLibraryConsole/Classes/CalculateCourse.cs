@@ -36,23 +36,6 @@ namespace AirTrafficLibraryConsole.Classes
 
             _Angle = angle;
             return _Angle;
-
-            //var dif = newY - oldY;
-            //Console.WriteLine(dif);
-            //var x = Math.Cos(newX) * Math.Sin(dif);
-            //Console.WriteLine(x);
-
-            ////oldX = 39 -- newX = 38 -- oldY = -94.5 -- newY = -90.200
-
-            ////Y = cos(39.099912) * sin(38.627089) – sin(39.099912) * cos(38.627089) * cos(4.38101)
-
-            //var y = Math.Cos(oldX) * Math.Sin(newX) - Math.Sin(oldX) * Math.Cos(newX) * Math.Cos(dif);
-            //Console.WriteLine(y);
-
-            //var degrees = Math.Atan2(x, y);
-            //degrees = degrees * 180 / Math.PI;
-
-            //return degrees;
         }
     }
 }
