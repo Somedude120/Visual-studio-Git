@@ -79,19 +79,20 @@ namespace AirTrafficLibraryConsole.Classes
             for (int i = 0; i < oldList.Count; i++)
             {
                 //Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
-                double x1 = newlist[i]._xCoord;
-                double x2 = oldList[i]._xCoord;
+                double x1 = oldList[i]._xCoord;
+                double x2 = newlist[i]._xCoord;
                 double y1 = oldList[i]._yCoord;
                 double y2 = oldList[i]._xCoord;
-                var newTO = newlist[i]._timestamp;
-                var oldTO = oldList[i]._timestamp;
+                var newTO = (newlist[i]._timestamp.Second) + newlist[i]._timestamp.Millisecond;
+                var oldTO = (oldList[i]._timestamp.Second) + oldList[i]._timestamp.Millisecond;
 
                 string difftime = Convert.ToString(newTO - oldTO);
 
-                double distance = _distance.CalcVelocity(x1, x2, y1, y2);
-                double velocity = distance / TimeSpan.Parse(difftime).Seconds;
+                double diffDouble = Convert.ToDouble(difftime);
+                double velocity = _distance.CalcVelocity(x1, x2, y1, y2, diffDouble);
+                
                 newlist[i]._hVelocity = velocity;
-                //Console.WriteLine("Velocity " + velocity);
+                Console.WriteLine("Velocity " + velocity);
 
                 //double _distance = 
             }
