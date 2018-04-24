@@ -64,6 +64,7 @@
     <Compile Include="Classes\Plane.cs" />
     <Compile Include="Classes\Print.cs" />
     <Compile Include="Classes\TrackInfoPosition.cs" />
+    <Compile Include="Interface\ICoords.cs" />
     <Compile Include="Interface\IEventHandler.cs" />
     <Compile Include="Classes\Parse.cs" />
     <Compile Include="Interface\ILogger.cs" />
