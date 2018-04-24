@@ -16,7 +16,7 @@ namespace AirTrafficLibrary.Test.Unit
         [Test]
         public void CalcCource_North()
         {
-            var uut = new CalculateCource();
+            //var uut = new CalculateCourse();
 
         }
     }

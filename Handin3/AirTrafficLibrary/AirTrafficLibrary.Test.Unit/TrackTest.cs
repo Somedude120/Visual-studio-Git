@@ -54,7 +54,7 @@ namespace AirTrafficLibrary.Test.Unit
         [Test]
         public void TrackObject_Receive_DateTime()
         {
-            Assert.That(_dateTime, Is.EqualTo(_trackObject._datetime));
+            Assert.That(_dateTime, Is.EqualTo(_trackObject._formattedTime));
         }
     }
 }
