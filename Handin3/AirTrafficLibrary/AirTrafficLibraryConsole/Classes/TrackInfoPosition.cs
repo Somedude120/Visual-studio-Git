@@ -9,6 +9,7 @@ namespace AirTrafficLibraryConsole.Classes
         private List<TrackObject> oldList;
         private List<TrackObject> currentList;
         private CalculateCourse _course;
+        private CalculateVelocity _velocity;
 
         public TrackInfoPosition()
         {
@@ -36,7 +37,8 @@ namespace AirTrafficLibraryConsole.Classes
                 //Console.WriteLine("Oldlist coord: " + oldList[0]._xCoord);
                 List<TrackObject> local = new List<TrackObject>(newlist);
                 local = SortTrackObjects(local);
-                //CalculateSpeed(local);
+                Velocity(newlist, oldList);
+
                 Course(newlist, oldList);
             }
 
@@ -69,6 +71,37 @@ namespace AirTrafficLibraryConsole.Classes
             return newlist;
 
         }
+
+        public List<TrackObject> Velocity(List<TrackObject> newlist, List<TrackObject> oldlist)
+        {
+
+
+
+
+            //Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
+            double x1 = Convert.ToDouble(newlist[newlist.Count - 1]._xCoord);
+            double x2 = Convert.ToDouble(oldlist[oldlist.Count - 1]._xCoord);
+            double y1 = Convert.ToDouble(newlist[newlist.Count - 1]._yCoord);
+            double y2 = Convert.ToDouble(oldlist[oldlist.Count - 1]._yCoord);
+            double time1 = Convert.ToDouble(newlist[newlist.Count - 1]._datetime);
+            double time2 = Convert.ToDouble(oldlist[oldlist.Count - 1]._datetime);
+
+            double timecalc = time1 - time2;
+
+
+            _velocity = new CalculateVelocity();
+            double distance = _velocity.CalcVelocity(x1, x2, y1, y2);
+
+            double velocitycalculated = distance / timecalc;
+
+            Console.WriteLine("Speed " + velocitycalculated + " tag: " + newlist[newlist.Count - 1]._tag);
+            //newlist[]._direction = Convert.ToString(_course._Angle);
+            //Console.WriteLine("test " + newlist[i]._direction + " object: " + newlist[i]._tag);
+
+            return newlist;
+
+        }
+
         public List<TrackObject> SortTrackObjects(List<TrackObject> sortList)
         {
             sortList.OrderBy(TrackObject => TrackObject._tag);
