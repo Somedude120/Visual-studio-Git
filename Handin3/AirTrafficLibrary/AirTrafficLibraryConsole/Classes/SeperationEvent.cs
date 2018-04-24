@@ -12,12 +12,30 @@ namespace AirTrafficLibraryConsole.Classes
         public string TagA { get; set; }
         public string TagB { get; set; }
         public DateTime EventTime { get; set; }
+        private TrackObject _track;
 
-        public bool CollisionDetection(ITrack _track1, ITrack _track2)
+
+        public bool CollisionDetection(ITrack track1, ITrack track2)
         {
-            //Input code
+
+            //Init så der kommer koordinater ind
+            double xcoord1 = track1._xCoord;
+            double xcoord2 = track2._xCoord;
+            double ycoord1 = track1._yCoord;
+            double ycoord2 = track2._yCoord;
+
+            if (xcoord1 == xcoord2 && ycoord1 == ycoord2)
+            {
+
+                return true;
+            }
+
+            
             return false;
         }
-
+        public void HandleEvent(object sender, EventArgs args)
+        {
+            Console.WriteLine("Something happened to your :  " + sender);
+        }
     }
 }
