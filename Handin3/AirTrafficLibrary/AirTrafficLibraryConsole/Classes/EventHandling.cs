@@ -9,7 +9,7 @@ namespace AirTrafficLibraryConsole.Classes
     {
         private ITransponderReceiver TransponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
         private List<TrackObject> tracklist = new List<TrackObject>();
-
+        private TrackInfoPosition tracker = new TrackInfoPosition();
         public void TransponderEventHandler()
         {
             TransponderReceiver.TransponderDataReady += TransponderReceiverOnTransponderDataReady;
@@ -18,9 +18,9 @@ namespace AirTrafficLibraryConsole.Classes
         private void TransponderReceiverOnTransponderDataReady(object sender,
             RawTransponderDataEventArgs rawTransponderDataEventArgs)
         {
-            TrackInfoPosition tracker = new TrackInfoPosition();
+
             DataHandler _dataHandler = new DataHandler();
- 
+
             Print _printinfo;
             //Klargøring at noget skal "formateres"
             Parse parse = new Parse();
@@ -44,14 +44,10 @@ namespace AirTrafficLibraryConsole.Classes
                 tracklist.Add(_trackobject);
 
                 if (FlightMonitor.MonitoredFlightData(ParsedFlight))
-                _printinfo = new Print(_trackobject);;
-                
-            }
-            
-            tracklist = tracker.Calculation(tracklist);
-            if (tracklist.Count != 0)
-            {
-                tracker.Course(tracklist);
+                    tracklist = tracker.Calculation(tracklist);
+
+                _printinfo = new Print(_trackobject);
+
             }
         }
     }

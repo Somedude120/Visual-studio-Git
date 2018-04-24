@@ -19,23 +19,45 @@ namespace AirTrafficLibraryConsole.Classes
         public List<TrackObject> Calculation(List<TrackObject> newlist)
         {
             currentList = newlist;
+            currentList.Clear();
             
+            foreach (var track in newlist)
+                currentList.Add(track);
+
             if (oldList.Count != 0 && oldList != newlist)
             {
-                Console.WriteLine(oldList[0]._xCoord);
+                Console.WriteLine("Oldlist coord: " + oldList[0]._xCoord);
                 List<TrackObject> local = new List<TrackObject>(newlist);
                 local = SortTrackObjects(local);
                 //CalculateSpeed(local);
                 Course(local);
             }
-            oldList = newlist;
+
+            oldList.Clear();
+
+            foreach (var track in newlist)
+                oldList.Add(track);
+
+            //oldList = newlist;
             return currentList;
         }
 
         public List<TrackObject> Course(List<TrackObject> newlist)
         {
+            currentList.Clear();
+
+            foreach (var track in newlist)
+                currentList.Add(track);
+
+            oldList.Clear();
+
+            foreach (var track in oldList)
+                oldList.Add(track);
+
             for (int i = 0; i < newlist.Count; i++)
             {
+
+
                 Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
                 double x1 = Convert.ToDouble(newlist[i]._xCoord);
                 double x2 = Convert.ToDouble(oldList[i]._xCoord);
@@ -43,6 +65,7 @@ namespace AirTrafficLibraryConsole.Classes
                 double y2 = Convert.ToDouble(newlist[i]._yCoord);
 
                 _course = new CalculateCourse(x1, x2, y1, y2);
+                Console.WriteLine("Course Calc: " + _course._Angle);
                 newlist[i]._direction = Convert.ToString(_course._Angle);
                 //Console.WriteLine("test " + newlist[i]._direction + "object: " + newlist[i]._tag);
             }
