@@ -28,6 +28,8 @@ namespace AirTrafficLibraryConsole.Classes
             }
             catch (ArgumentException e)
             {
+                Console.WriteLine(e.Message);
+                throw;
             }
         }
     }
