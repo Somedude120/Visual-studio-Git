@@ -18,6 +18,7 @@ namespace AirTrafficLibraryConsole.Classes
             currentList = new List<TrackObject>();
         }
 
+        //test
         public List<TrackObject> Calculation(List<TrackObject> newlist)
         {
             //currentList = newlist;
