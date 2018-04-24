@@ -5,16 +5,19 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using AirTrafficLibrary.Interface;
 using AirTrafficLibraryConsole.Classes;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace AirTrafficLibrary.Test.Unit
 {
     [TestFixture]
-    class LoggerTest
+    public class LoggerTest
     {
+
         [Test]
-        public void FileExists()
+        public void Logger_FileExists()
         {
             var uut = new Logger();
 
@@ -23,6 +26,16 @@ namespace AirTrafficLibrary.Test.Unit
             var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + "SeperationLog.txt";
 
             Assert.IsTrue(File.Exists(path));
+        }
+
+        [Test]
+        public void Logger_ThrowIfStringIsEmpty()
+        {
+            var uut = new Logger();
+
+            string Logger = "";
+
+            Assert.Throws<ArgumentException>(() => { uut.LogWriter(Logger); });
         }
     }
 }
