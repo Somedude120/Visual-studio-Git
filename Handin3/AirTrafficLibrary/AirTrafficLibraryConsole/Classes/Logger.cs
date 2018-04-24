@@ -18,10 +18,10 @@ namespace AirTrafficLibraryConsole.Classes
         public void LogWriter(string str)
         {
             _filePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
+            //asd
             try
             {
-                using (StreamWriter w = File.AppendText(_filePath + "\\" + "log.txt"))
+                using (StreamWriter w = File.AppendText(_filePath + "\\" + "SeperationLog.txt"))
                 {
                      w.Write(str);
                 }
