@@ -43,9 +43,11 @@ namespace AirTrafficLibraryConsole.Classes
                 TrackObject _trackobject = new TrackObject(ParsedFlight);
                 tracklist.Add(_trackobject);
 
-                if (FlightMonitor.MonitoredFlightData(ParsedFlight))
-                    tracklist = tracker.Calculation(tracklist);
+                tracker.Calculation(tracklist);
 
+                if (FlightMonitor.MonitoredFlightData(ParsedFlight))
+                    
+                //tracklist = tracker.Calculation(tracklist);
                 _printinfo = new Print(_trackobject);
 
             }

@@ -18,19 +18,26 @@ namespace AirTrafficLibraryConsole.Classes
 
         public List<TrackObject> Calculation(List<TrackObject> newlist)
         {
-            currentList = newlist;
+            //currentList = newlist;
+
+            //Console.WriteLine("newlist coord: " + newlist[0]._xCoord);
+
             currentList.Clear();
-            
+
             foreach (var track in newlist)
                 currentList.Add(track);
 
+
+
+
             if (oldList.Count != 0 && oldList != newlist)
             {
-                Console.WriteLine("Oldlist coord: " + oldList[0]._xCoord);
+                Console.WriteLine("newlist: " + newlist[newlist.Count -1]._xCoord + " " + "oldlist: " + oldList[oldList.Count -1]._xCoord);
+                //Console.WriteLine("Oldlist coord: " + oldList[0]._xCoord);
                 List<TrackObject> local = new List<TrackObject>(newlist);
                 local = SortTrackObjects(local);
                 //CalculateSpeed(local);
-                Course(local);
+                Course(newlist, oldList);
             }
 
             oldList.Clear();
@@ -42,33 +49,22 @@ namespace AirTrafficLibraryConsole.Classes
             return currentList;
         }
 
-        public List<TrackObject> Course(List<TrackObject> newlist)
+        public List<TrackObject> Course(List<TrackObject> newlist, List<TrackObject> oldlist)
         {
-            currentList.Clear();
 
-            foreach (var track in newlist)
-                currentList.Add(track);
+            
+  
 
-            oldList.Clear();
-
-            foreach (var track in oldList)
-                oldList.Add(track);
-
-            for (int i = 0; i < newlist.Count; i++)
-            {
-
-
-                Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
-                double x1 = Convert.ToDouble(newlist[i]._xCoord);
-                double x2 = Convert.ToDouble(oldList[i]._xCoord);
-                double y1 = Convert.ToDouble(oldList[i]._yCoord);
-                double y2 = Convert.ToDouble(newlist[i]._yCoord);
+                //Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
+                double x1 = Convert.ToDouble(newlist[newlist.Count -1]._xCoord);
+                double x2 = Convert.ToDouble(oldlist[oldlist.Count - 1]._xCoord);
+                double y1 = Convert.ToDouble(newlist[newlist.Count - 1]._yCoord);
+                double y2 = Convert.ToDouble(oldlist[oldlist.Count - 1]._yCoord);
 
                 _course = new CalculateCourse(x1, x2, y1, y2);
-                Console.WriteLine("Course Calc: " + _course._Angle);
-                newlist[i]._direction = Convert.ToString(_course._Angle);
-                //Console.WriteLine("test " + newlist[i]._direction + "object: " + newlist[i]._tag);
-            }
+                Console.WriteLine("Course Calc: " + _course._Angle + " tag: " + newlist[newlist.Count -1]._tag);
+                //newlist[]._direction = Convert.ToString(_course._Angle);
+                //Console.WriteLine("test " + newlist[i]._direction + " object: " + newlist[i]._tag);
             
             return newlist;
 
