@@ -9,24 +9,40 @@ namespace AirTrafficLibraryConsole.Classes
 {
     class CalculateVelocity
     {
-        public double CalcVelocity(double x1, double x2, double y1, double y2)
+        public double CalcVelocity(double x1, double x2, double y1, double y2, double time)
         {
-            double x3 = 0;
-            double y3 = 0;
-            double length = 0;
+            double a = 0, b = 0, speed = 0;
 
-            x3 = x2 - x1;
+            if (x1 > x2)
+            {
+                a = x1 - x2;
+            }
+            else
+            {
+                a = x2 - x1;
+            }
 
-            y3 = y2 - y1;
+            if (y1 > y2)
+            {
+                b = y1 - y2;
+            }
+            else
+            {
+                b = y2 - y1;
+            }
 
-            // a^2 + b^2 = c^2 
-            length = Math.Pow(x3, 2) + Math.Pow(y3, 2);
+            double c = Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
 
-            length = Math.Sqrt(length);
-            
+            if (time < 0)
+            {
+                time = time * -1;
+                speed = c / time;
 
-            // mangler at dividere med tiden.
-            return length;
+            }
+            else if (time > 0)
+            { speed = c / time; }
+
+            return speed;
         }
     }
 }
