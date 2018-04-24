@@ -7,7 +7,7 @@ using AirTrafficLibraryConsole.Interface;
 
 namespace AirTrafficLibraryConsole.Classes
 {
-    class CalculateVelocity
+    public class CalculateVelocity
     {
         public double CalcVelocity(double x1, double x2, double y1, double y2, double time)
         {

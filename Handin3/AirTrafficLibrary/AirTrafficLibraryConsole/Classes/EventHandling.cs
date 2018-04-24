@@ -46,22 +46,3 @@ namespace AirTrafficLibraryConsole.Classes
         }
     }
 }
-
-//List<string> ParsedFlight = new List<string>();
-//_dataHandler.Splitter(ParsedFlight);
-//Ta track obj
-//Parse data igennem så vi får i uformatteretstrings
-//TrackConversion trackConversion = new TrackConversion(HANS);
-
-//Formatere string til 4 forskellige strings
-//ParsedFlight = parse.ParseFlightInfo(trackConversion.UnformattedInfo);
-//Formattere den timestamp
-//ParsedFlight[4] = DataHandler.FormatTimestamp(ParsedFlight[4]);
-//Tilsæt den nye formatteret liste med fly ind i list
-//trackConversion.List(ParsedFlight);
-//TrackObject _trackobject = new TrackObject(ParsedFlight);
-//tracklist.Add(_trackobject);
-
-//tracker.Calculation(tracklist);
-//tracklist = tracker.Calculation(tracklist);
-
