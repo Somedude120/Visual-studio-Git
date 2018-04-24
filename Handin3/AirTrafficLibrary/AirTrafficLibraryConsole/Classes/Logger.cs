@@ -15,29 +15,43 @@ namespace AirTrafficLibraryConsole.Classes
 {
     public class Logger : ILogger
     {
-        private string _filePath = string.Empty;
+        public string Path { get; set; }
 
-        public void LogWriter(string str)
+        public Logger(string path = @"Seperation.Txt") => Path = path;
+
+        public void LogWriter(List<SeperationEvent> seperationEvents)
         {
-            _filePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            //asd
-            try
+            using (StreamWriter log = new StreamWriter(Path, true))
             {
-                if (str == "")
+                for(int i = 0;  i < seperationEvents.Count; i++)
                 {
-                    throw new ArgumentException("The provided string is empty");
+                    log.WriteLine(i);
                 }
-
-                using (StreamWriter w = File.AppendText(_filePath + "\\" + "SeperationLog.txt"))
-                {
-                     w.Write(str);
-                }
-            }
-            catch (ArgumentException e)
-            {
-                Console.WriteLine(e.Message);
-                throw;
             }
         }
+
+
+        //public void LogWriter(string str)
+        //{
+        //    _filePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            
+        //    try
+        //    {
+        //        if (str == "")
+        //        {
+        //            throw new ArgumentException("The provided string is empty");
+        //        }
+
+        //        using (StreamWriter w = File.AppendText(_filePath + "\\" + "SeperationLog.txt"))
+        //        {
+        //             w.Write(str);
+        //        }
+        //    }
+        //    catch (ArgumentException e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //        throw;
+        //    }
+        //}
     }
 }

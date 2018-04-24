@@ -5,6 +5,8 @@ namespace AirTrafficLibrary.Interface
 {
     public interface ILogger
     {
-        void LogWriter(string collisionPairs);
+        //void LogWriter(string collisionPairs);
+
+        void LogWriter(List<SeperationEvent> SeperationEvents);
     }
 }
