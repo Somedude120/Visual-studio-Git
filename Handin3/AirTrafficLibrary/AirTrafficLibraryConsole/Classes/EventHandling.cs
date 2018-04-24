@@ -7,6 +7,18 @@ namespace AirTrafficLibraryConsole.Classes
 {
     public class EventHandling : IEventHandler
     {
+        public event EventHandler SomethingHappened;
+
+        public void DoSomething()
+        {
+            EventHandler handler = SomethingHappened;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+        }
+
+
         private ITransponderReceiver TransponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
         private List<TrackObject> tracklist = new List<TrackObject>();
         private TrackInfoPosition tracker = new TrackInfoPosition();

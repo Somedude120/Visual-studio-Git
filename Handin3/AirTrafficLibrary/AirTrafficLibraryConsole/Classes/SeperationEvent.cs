@@ -14,6 +14,7 @@ namespace AirTrafficLibraryConsole.Classes
         public DateTime EventTime { get; set; }
         private TrackObject _track;
 
+
         public bool CollisionDetection(ITrack track1, ITrack track2)
         {
 
@@ -27,10 +28,14 @@ namespace AirTrafficLibraryConsole.Classes
             {
 
                 return true;
-            }            
+            }
 
+            
             return false;
         }
-
+        public void HandleEvent(object sender, EventArgs args)
+        {
+            Console.WriteLine("Something happened to your :  " + sender);
+        }
     }
 }

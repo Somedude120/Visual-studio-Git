@@ -1,4 +1,5 @@
-﻿using AirTrafficLibraryConsole.Classes;
+﻿using System;
+using AirTrafficLibraryConsole.Classes;
 using AirTrafficLibraryConsole.Interface;
 using NUnit.Framework;
 using NSubstitute;
@@ -33,6 +34,21 @@ namespace AirTrafficLibrary.Test.Unit
 
 
             Assert.AreEqual(something, true);
+
+        }
+
+        [Test]
+        public void RaiseAnEventWhenCollisionIsTrue()
+        {
+
+            EventHandling observable = new EventHandling();
+            SeperationEvent observer = new SeperationEvent();
+            observable.SomethingHappened += observer.HandleEvent;
+
+            observable.DoSomething();
+            Assert.That(_uut.CollisionDetection(_track1,_track2));
+
+
 
         }
     }
