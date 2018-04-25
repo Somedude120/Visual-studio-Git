@@ -13,7 +13,7 @@ namespace AirTrafficLibraryConsole.Classes
         private CalculateCourse _course;
         private CalculateVelocity _velocity = new CalculateVelocity();
         private CalculateDistance _distance;
-        private ISeperationEvent SeparationEvent;
+        private SeperationEvent SeparationEvent;
 
         public TrackInfoPosition()
         {
@@ -45,7 +45,8 @@ namespace AirTrafficLibraryConsole.Classes
                 //Velocity(newlist, oldList);
                 Velocity(local);
                 Course(local);
-                
+                Distance(local);
+
                 //Course(newlist, oldList);
             }
 
@@ -113,7 +114,7 @@ namespace AirTrafficLibraryConsole.Classes
         public List<TrackObject> Distance(List<TrackObject> newlist)
         {
 
-
+            _distance = new CalculateDistance();
             for (int i = 0; i < oldList.Count; i++)
             {
                 //Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
@@ -124,16 +125,33 @@ namespace AirTrafficLibraryConsole.Classes
                 double y1 = newlist[i]._yCoord;
                 double y2 = oldList[i]._xCoord;
 
+
+
                 double d1 = _distance.CalculateDistance1D(a1, a2);
                 double d2 = _distance.CalculateDistance2D(x1, x2, y1, y2);
                 SeparationEvent = new SeperationEvent(_distance);
+                EventHandling observable = new EventHandling();
 
+                observable.SomethingHappened += ObservableOnSomethingHappened;
 
             }
 
 
             return newlist;
 
+        }
+
+        private void ObservableOnSomethingHappened(object sender, EventArgs eventArgs)
+        {
+            for (int i = 0; i < oldList.Count; i++)
+            {
+                if (SeparationEvent.CollisionDetection(currentList[i], oldList[i]) == true)
+                {
+                    SeparationEvent.LogSeparationEvent(oldList[i],currentList[i]);
+                }
+            }
+
+ 
         }
 
         public List<TrackObject> SortTrackObjects(List<TrackObject> sortList)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,17 @@ namespace AirTrafficLibraryConsole.Classes
             double verticalDistance = dist.CalculateDistance1D(track1._alt, track2._alt);
 
             return horizontalDistance < horizontalConflict && verticalDistance < verticalConflict;
+        }
+
+        public void LogSeparationEvent(ITrack track1, ITrack track2)
+        {
+            string output = "Timestamp: " + track1._formattedTime + "\t" +
+                            track1._tag + " and " + track2._tag + " are breaking separation rules";
+
+            using (StreamWriter outputFile = new StreamWriter(@"SeparatationEventLog.txt", true))
+            {
+                outputFile.WriteLine(output);
+            }
         }
 
         public void HandleEvent(object sender, EventArgs args)
