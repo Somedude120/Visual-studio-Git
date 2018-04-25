@@ -14,7 +14,6 @@ namespace AirTrafficLibraryConsole.Classes
         private CalculateVelocity _velocity = new CalculateVelocity();
         private CalculateDistance _distance;
         private SeperationEvent SeparationEvent;
-
         public TrackInfoPosition()
         {
             oldList = new List<TrackObject>();
@@ -28,26 +27,35 @@ namespace AirTrafficLibraryConsole.Classes
 
             //Console.WriteLine("newlist coord: " + newlist[0]._xCoord);
 
-            currentList.Clear();
-
-            foreach (var track in newlist)
-                currentList.Add(track);
-
-
-
-
             if (oldList.Count != 0 && oldList != newlist)
             {
+                _distance = new CalculateDistance();
+                for (int i = 0; i < oldList.Count; i++)
+                {
+                    SeparationEvent = new SeperationEvent(_distance);
+                    if (SeparationEvent.CollisionDetection(newlist[i], oldList[i]) == true)
+                    {
+                        if (newlist[i]._tag != oldList[i]._tag)
+                        {
+                            ObservableOnSomethingHappened(SeparationEvent, new EventArgs());
+                            Console.WriteLine($"Collision detection system detected on: {newlist[i]._tag} and {oldList[i]._tag}");
+                            SeparationEvent.LogSeparationEvent(oldList[i], newlist[i]);
+                        }                       
+                    }
+                }
                 //Console.WriteLine("newlist: " + newlist[newlist.Count -1]._xCoord + " " + "oldlist: " + oldList[oldList.Count -1]._xCoord);
                 //Console.WriteLine("Oldlist coord: " + oldList[0]._xCoord);
+                currentList.Clear();
+
+                foreach (var track in newlist)
+                    currentList.Add(track);
+
                 List<TrackObject> local = new List<TrackObject>(newlist);
                 local = SortTrackObjects(local);
                 //Velocity(newlist, oldList);
                 Velocity(local);
                 Course(local);
                 Distance(local);
-
-                //Course(newlist, oldList);
             }
 
             oldList.Clear();
@@ -117,25 +125,27 @@ namespace AirTrafficLibraryConsole.Classes
             _distance = new CalculateDistance();
             for (int i = 0; i < oldList.Count; i++)
             {
-                //Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
+                
                 double a1 = newlist[i]._alt;
                 double a2 = newlist[i]._alt;
                 double x1 = newlist[i]._xCoord;
                 double x2 = oldList[i]._xCoord;
                 double y1 = newlist[i]._yCoord;
                 double y2 = oldList[i]._xCoord;
-
-
+                
 
                 double d1 = _distance.CalculateDistance1D(a1, a2);
                 double d2 = _distance.CalculateDistance2D(x1, x2, y1, y2);
-                SeparationEvent = new SeperationEvent(_distance);
+
+
+
                 EventHandling observable = new EventHandling();
 
+
                 observable.SomethingHappened += ObservableOnSomethingHappened;
-
+                
             }
-
+            
 
             return newlist;
 
@@ -143,15 +153,7 @@ namespace AirTrafficLibraryConsole.Classes
 
         private void ObservableOnSomethingHappened(object sender, EventArgs eventArgs)
         {
-            for (int i = 0; i < oldList.Count; i++)
-            {
-                if (SeparationEvent.CollisionDetection(currentList[i], oldList[i]) == true)
-                {
-                    SeparationEvent.LogSeparationEvent(oldList[i],currentList[i]);
-                }
-            }
-
- 
+            Console.WriteLine("Event Triggered!");
         }
 
         public List<TrackObject> SortTrackObjects(List<TrackObject> sortList)
