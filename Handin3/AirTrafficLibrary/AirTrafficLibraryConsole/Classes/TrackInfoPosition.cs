@@ -9,8 +9,8 @@ namespace AirTrafficLibraryConsole.Classes
         private List<TrackObject> oldList;
         private List<TrackObject> currentList;
         private CalculateCourse _course;
-        private CalculateVelocity _distance = new CalculateVelocity();
-
+        private CalculateVelocity _velocity = new CalculateVelocity();
+        private CalculateDistance _distance;
 
         public TrackInfoPosition()
         {
@@ -94,7 +94,7 @@ namespace AirTrafficLibraryConsole.Classes
                 string difftime = Convert.ToString(newTO - oldTO);
 
                 double diffDouble = Convert.ToDouble(difftime);
-                double velocity = _distance.CalcVelocity(x1, x2, y1, y2, diffDouble);
+                double velocity = _velocity.CalcVelocity(x1, x2, y1, y2, diffDouble);
                 
                 newlist[i]._hVelocity = velocity;
                 //Console.WriteLine("Velocity " + velocity);

@@ -9,8 +9,10 @@ namespace AirTrafficLibraryConsole.Classes
     {
         public event EventHandler SomethingHappened;
 
-        public void DoSomething()
+        public void DoSomething(TrackObject track1, TrackObject track2)
         {
+            
+
             EventHandler handler = SomethingHappened;
             if (handler != null)
             {
@@ -49,6 +51,7 @@ namespace AirTrafficLibraryConsole.Classes
                     track._formattedTime = _dataHandler.FormatTimestamp(data[4]);
 
                     tracklist.Add(track);
+                    
                     
 
                     tracker.Calculation(tracklist); //Tracker

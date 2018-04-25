@@ -19,7 +19,7 @@ namespace AirTrafficLibrary.Test.Unit
         [Test]
         public void Logger_FileExists()
         {
-            var uut = new Logger();
+            //var uut = new Logger();
 
             //uut.LogWriter("LogWriteTest");
 
@@ -31,7 +31,7 @@ namespace AirTrafficLibrary.Test.Unit
         [Test]
         public void Logger_ThrowIfStringIsEmpty()
         {
-            var uut = new Logger();
+            //var uut = new Logger();
 
             string Logger = "";
 

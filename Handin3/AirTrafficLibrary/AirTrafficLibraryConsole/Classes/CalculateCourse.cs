@@ -1,8 +1,9 @@
 ﻿using System;
+using AirTrafficLibraryConsole.Interface;
 
 namespace AirTrafficLibraryConsole.Classes
 {
-    public class CalculateCourse
+    public class CalculateCourse : ICalculators
     {
         public double _Angle { get; set; }
         public double _x1 { get; set; }
