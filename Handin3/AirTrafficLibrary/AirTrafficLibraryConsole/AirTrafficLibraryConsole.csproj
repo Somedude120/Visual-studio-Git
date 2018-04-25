@@ -71,7 +71,6 @@
     <Compile Include="Classes\Print.cs" />
     <Compile Include="Classes\SeperationEvent.cs" />
     <Compile Include="Classes\TrackInfoPosition.cs" />
-    <Compile Include="Classes\TrackToLog.cs" />
     <Compile Include="Interface\ICalculators.cs" />
     <Compile Include="Interface\ICoords.cs" />
     <Compile Include="Interface\IEventHandler.cs" />
