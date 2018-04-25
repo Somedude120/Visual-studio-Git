@@ -29,7 +29,7 @@ namespace AirTrafficLibraryConsole.Classes
             {
                 if (str == "")
                 {
-                    throw new ArgumentException("The provided string is empty");
+                    throw new ArgumentException("String is empty");
                 }
 
                 using (StreamWriter w = File.AppendText(_filePath + "\\" + "SeperationLog.txt"))
