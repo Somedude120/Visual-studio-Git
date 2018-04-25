@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AirTrafficLibrary.Interface;
+using AirTrafficLibraryConsole.Interface;
 
 namespace AirTrafficLibraryConsole.Classes
 {
@@ -11,6 +13,7 @@ namespace AirTrafficLibraryConsole.Classes
         private CalculateCourse _course;
         private CalculateVelocity _velocity = new CalculateVelocity();
         private CalculateDistance _distance;
+        private ISeperationEvent SeparationEvent;
 
         public TrackInfoPosition()
         {
@@ -42,6 +45,7 @@ namespace AirTrafficLibraryConsole.Classes
                 //Velocity(newlist, oldList);
                 Velocity(local);
                 Course(local);
+                
                 //Course(newlist, oldList);
             }
 
@@ -106,8 +110,31 @@ namespace AirTrafficLibraryConsole.Classes
             return newlist;
 
         }
+        public List<TrackObject> Distance(List<TrackObject> newlist)
+        {
 
-        
+
+            for (int i = 0; i < oldList.Count; i++)
+            {
+                //Console.WriteLine(newlist[i]._xCoord + " " + oldList[i]._xCoord);
+                double a1 = newlist[i]._alt;
+                double a2 = newlist[i]._alt;
+                double x1 = newlist[i]._xCoord;
+                double x2 = oldList[i]._xCoord;
+                double y1 = newlist[i]._yCoord;
+                double y2 = oldList[i]._xCoord;
+
+                double d1 = _distance.CalculateDistance1D(a1, a2);
+                double d2 = _distance.CalculateDistance2D(x1, x2, y1, y2);
+                SeparationEvent = new SeperationEvent(_distance);
+
+
+            }
+
+
+            return newlist;
+
+        }
 
         public List<TrackObject> SortTrackObjects(List<TrackObject> sortList)
         {

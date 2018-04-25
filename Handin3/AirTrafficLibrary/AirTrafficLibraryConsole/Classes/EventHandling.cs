@@ -8,7 +8,7 @@ namespace AirTrafficLibraryConsole.Classes
     public class EventHandling : IEventHandler
     {
         public event EventHandler SomethingHappened;
-
+        //Eventet når der sker noget helt specifikt, så skal somethinghappened aktiveres
         public void DoSomething(TrackObject track1, TrackObject track2)
         {
             
