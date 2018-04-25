@@ -3,6 +3,7 @@ using AirTrafficLibraryConsole.Classes;
 using AirTrafficLibraryConsole.Interface;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Constraints;
 
 namespace AirTrafficLibrary.Test.Unit
 {
@@ -12,15 +13,18 @@ namespace AirTrafficLibrary.Test.Unit
         private SeperationEvent _uut;
         private bool yes, no;
         private ITrack _track1, _track2;
-        
+        private CalculateDistance _distance;
+
         [SetUp]
         public void Setup()
         {
+            
             _track1 = Substitute.For<ITrack>();
             _track2 = Substitute.For<ITrack>();
             yes = true;
             no = false;
-            _uut = new SeperationEvent();
+            _distance = new CalculateDistance();
+            _uut = new SeperationEvent(_distance);
         }
 
         [Test]
@@ -40,16 +44,25 @@ namespace AirTrafficLibrary.Test.Unit
         [Test]
         public void RaiseAnEventWhenCollisionIsTrue()
         {
+            _uut = Substitute.For<SeperationEvent>(_distance);
 
-            EventHandling observable = new EventHandling();
-            SeperationEvent observer = new SeperationEvent();
-            observable.SomethingHappened += observer.HandleEvent;
+            bool something = _uut.CollisionDetection(_track1, _track2);
 
-            observable.DoSomething();
-            Assert.That(_uut.CollisionDetection(_track1,_track2));
+            //Hvis der er kollison så skal dette event ske
+            _uut.Received().HandleEvent(something,EventArgs.Empty);
+            
+            //EventHandling observable = new EventHandling();
+            //SeperationEvent observer = new SeperationEvent();
+            //observable.SomethingHappened += observer.HandleEvent;
 
+            //observable.DoSomething();
+            //Assert.That(observable.DoSomething());
+        }
 
-
+        [Test]
+        public void WhenEventRaisedSendLogger()
+        {
+            
         }
     }
 }
