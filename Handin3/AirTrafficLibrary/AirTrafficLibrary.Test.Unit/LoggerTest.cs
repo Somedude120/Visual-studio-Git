@@ -19,9 +19,9 @@ namespace AirTrafficLibrary.Test.Unit
         [Test]
         public void Logger_FileExists()
         {
-            //var uut = new Logger();
+            var uut = new Logger("Test");
 
-            //uut.LogWriter("LogWriteTest");
+            uut.LogWriter("LogWriteTest");
 
             var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + "SeperationLog.txt";
 
@@ -31,11 +31,11 @@ namespace AirTrafficLibrary.Test.Unit
         [Test]
         public void Logger_ThrowIfStringIsEmpty()
         {
-            //var uut = new Logger();
+            var uut = new Logger("");
 
             string Logger = "";
 
-            //Assert.Throws<ArgumentException>(() => { uut.LogWriter(Logger); });
+            Assert.Throws<ArgumentException>(() => { uut.LogWriter(Logger); });
         }
     }
 }
