@@ -35,6 +35,11 @@ namespace ATMLibrary.IntegrationTest.IT
 
         }
 
+        [Test]
+        public void GetBlue()
+        {
+            Assert.AreEqual(2+2,4);
+        }
         //[Test]
         //public void HandlingStuff()
         //{

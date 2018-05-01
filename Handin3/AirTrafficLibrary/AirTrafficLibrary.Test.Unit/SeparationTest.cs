@@ -64,5 +64,13 @@ namespace AirTrafficLibrary.Test.Unit
         {
             
         }
+
+        [Test]
+        public void WhenASeparationHappen()
+        {
+
+            _uut = new SeperationEvent(_distance);
+            
+        }
     }
 }
